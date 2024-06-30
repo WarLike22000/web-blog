@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const Navbar = () => {
     return ( 
-        <div className="py-5">
+        <div className="py-5 px-5 md:px-12 lg:px-28">
             <div className="flex justify-between items-center">
                 <Link href="/">
                     <Image
@@ -15,7 +15,7 @@ const Navbar = () => {
                         height={150}
                     />
                 </Link>
-                <Button className="flex items-center gap-2">
+                <Button className="items-center gap-2 hidden sm:flex">
                     Get started
                     <ArrowRight size={17} />
                 </Button>

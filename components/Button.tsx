@@ -1,4 +1,5 @@
 import { ButtonProps } from "@/types";
+import clsx from "clsx";
 
 const Button = ({
     children,
@@ -8,7 +9,10 @@ const Button = ({
     return ( 
         <button
             onClick={onClick}
-            className={`px-2 sm:px-3 py-1 rounded-2xl text-white bg-gray-500 hover:bg-gray-400 transition text-[14px] sm:text-base ${className}`}
+            className={clsx(
+                "px-2 sm:px-3 py-1 rounded-2xl text-white bg-gray-700 hover:bg-gray-400 transition text-[14px] sm:text-base",
+                className
+            )}
         >
             {children}
         </button>

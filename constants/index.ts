@@ -2,7 +2,11 @@ import { BlogCardProps } from "@/types";
 
 export const buttonCategory = [
     {
-        label: "lifestyle",
+        label: "All",
+        name: "all",
+    },
+    {
+        label: "Lifestyle",
         name: "lifestyle",
     },
     {

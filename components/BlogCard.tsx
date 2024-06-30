@@ -15,7 +15,7 @@ const BlogCard = ({
     authorImage,
 }: BlogCardProps) => {
     return ( 
-        <motion.div key={id} className="flex flex-col overflow-hidden rounded-xl p-2 shadow border cursor-pointer hover:scale-105 transition-all">
+        <motion.div key={id} className="flex flex-col overflow-hidden rounded-xl p-2 shadow border cursor-pointer hover:scale-105 transition-all h-[350px]">
             <motion.div className="border-b pb-2">
                 <motion.img
                     src={image}
@@ -39,7 +39,7 @@ const BlogCard = ({
             <h2 className="text-lg text-slate-700 pt-3">
                 {title}
             </h2>
-            <p className="truncate text-slate-500">
+            <p className="truncate text-slate-500 text-wrap">
                 {description}
             </p>
         </motion.div>

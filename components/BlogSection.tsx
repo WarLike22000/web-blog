@@ -3,11 +3,14 @@
 import BlogCard from "./BlogCard";
 
 import { AnimatePresence, motion, Variants } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { blogs, buttonCategory } from "@/constants";
 import Button from "./Button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ListFilter } from "lucide-react";
+import clsx from "clsx";
+import Menu from "./Menu";
+import { useClickOutside } from "@/hook/useClickOutside";
 
 const variantCards: Variants = {
     offscreen: {
@@ -28,6 +31,7 @@ const variantCards: Variants = {
 const BlogSection = () => {
 
     const [isMounted, setIsMounted] = useState(false);
+    const [open, setOpen] = useState(false);
     const [category, setCategory] = useState("all");
 
     const data = blogs.filter((blog) => blog.category === category);
@@ -46,24 +50,38 @@ const BlogSection = () => {
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.2 }}
         >
-            <div className="text-3xl flex items-center justify-between">
+            <div className="text-xl md:text-3xl flex items-center justify-between">
                 <h1>
                     Latest blogs
                 </h1>
-                <section className="flex items-center gap-2">
-                    <Button onClick={() => setCategory("all")}>
-                        All
+                <section className="relative flex items-center gap-2">
+                    <Button
+                        onClick={() => setOpen((prev) => !prev)}
+                        className="cursor-pointer flex items-center gap-2 text-base bg-gray-800 test-white"
+                    >
+                        Filter <ListFilter size={18} />
                     </Button>
-                    {buttonCategory.map(({ label, name }) => (
-                        <Button onClick={() => setCategory(name)}>
-                            {label}
-                        </Button>
-                    ))}
+                    <Menu open={open} setOpen={setOpen}>
+                        <div className="flex flex-col gap-1 bg-gray-800 rounded-xl overflow-hidden">
+                            {buttonCategory.map(({ label, name }) => (
+                                <h6
+                                    onClick={() => {
+                                        setCategory(name)
+                                        setOpen(false);
+                                    }}
+                                    className={clsx("text-base text-center text-white py-1 px-4 cursor-pointer hover:bg-slate-100 hover:text-slate-800 transition-all",
+                                        category === name && "bg-slate-100 text-slate-900 hover:bg-slate-100")}
+                                >
+                                    {label}
+                                </h6>
+                            ))}
+                        </div>
+                    </Menu>
+                    <Link href="/" className="text-lg text-slate-600 flex items-center gap-1 hover:text-slate-400 transition">
+                        All
+                        <ArrowRight size={15} />
+                    </Link>
                 </section>
-                <Link href="/" className="text-lg text-slate-600 flex items-center gap-1 hover:text-slate-400 transition">
-                    All
-                    <ArrowRight size={15} />
-                </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <AnimatePresence>

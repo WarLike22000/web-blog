@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ButtonProps {
     children: React.ReactNode;
     className?: string
@@ -13,4 +15,10 @@ export interface BlogCardProps {
     category: string;
     author: string;
     authorImage: string;
+};
+
+export interface MenuProps {
+    children: React.ReactNode;
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>;
 };
