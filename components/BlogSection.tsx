@@ -70,14 +70,14 @@ const BlogSection = () => {
                                         setOpen(false);
                                     }}
                                     className={clsx("text-base text-center text-white py-1 px-4 cursor-pointer hover:bg-slate-100 hover:text-slate-800 transition-all",
-                                        category === name && "bg-slate-100 text-slate-900 hover:bg-slate-100")}
+                                        category === name && "bg-slate-100 text-gray-900 hover:bg-slate-100")}
                                 >
                                     {label}
                                 </h6>
                             ))}
                         </div>
                     </Menu>
-                    <Link href="/" className="text-lg text-slate-600 flex items-center gap-1 hover:text-slate-400 transition">
+                    <Link href="/blogs" className="text-lg text-slate-600 flex items-center gap-1 hover:text-slate-400 transition">
                         All
                         <ArrowRight size={15} />
                     </Link>
@@ -88,13 +88,12 @@ const BlogSection = () => {
                     {
                         category === "all" ? (
                             <>
-                                {blogs.map(({ id, title, description, image, date, category, author, authorImage }) => (
+                                {blogs.map(({ id, title, description, image, category, author, authorImage }) => (
                                     <BlogCard
                                         id={id}
                                         title={title}
                                         description={description}
                                         image={image}
-                                        date={date}
                                         category={category}
                                         author={author}
                                         authorImage={authorImage}
@@ -103,13 +102,12 @@ const BlogSection = () => {
                             </>
                         ) : (
                             <>
-                                {data.map(({ id, title, description, image, date, category, author, authorImage }) => (
+                                {data.map(({ id, title, description, image, category, author, authorImage }) => (
                                     <BlogCard
                                         id={id}
                                         title={title}
                                         description={description}
                                         image={image}
-                                        date={date}
                                         category={category}
                                         author={author}
                                         authorImage={authorImage}

@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Button from "./Button";
+import Link from "next/link";
 
 const variantImage: Variants = {
     offscreen: {
@@ -59,9 +60,16 @@ const Hero = () => {
                 <p className="text-base text-justify">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <Button className="rounded-md">
-                    Create Now
-                </Button>
+                <div className="flex items-center gap-2">
+                    <Button className="rounded-md">
+                        Create Now
+                    </Button>
+                    <Button className="rounded-md">
+                        <Link href="/blogs">
+                            All Blogs
+                        </Link>
+                    </Button>
+                </div>
             </motion.div>
         </motion.div>
      );

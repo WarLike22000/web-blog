@@ -3,19 +3,26 @@
 import { BlogCardProps } from "@/types";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const BlogCard = ({
     id,
     title,
     description,
     image,
-    date,
     category,
     author,
     authorImage,
 }: BlogCardProps) => {
+
+    const router = useRouter();
+    
     return ( 
-        <motion.div key={id} className="flex flex-col overflow-hidden rounded-xl p-2 shadow border cursor-pointer hover:scale-105 transition-all h-[350px]">
+        <motion.div
+            key={id}
+            onClick={() => router.push(`/blogs/${id}`)}
+            className="flex flex-col overflow-hidden rounded-xl p-2 shadow border cursor-pointer hover:scale-105 transition-all h-[350px]"
+        >
             <motion.div className="border-b pb-2">
                 <motion.img
                     src={image}
@@ -34,7 +41,7 @@ const BlogCard = ({
                 {author}
             </div>
             <div className="text-sm text-slate-400">
-                {category} - {date}
+                {category}
             </div>
             <h2 className="text-lg text-slate-700 pt-3">
                 {title}

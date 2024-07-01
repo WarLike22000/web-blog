@@ -11,7 +11,6 @@ export interface BlogCardProps {
     title: string;
     description: string;
     image: string;
-    date: number;
     category: string;
     author: string;
     authorImage: string;

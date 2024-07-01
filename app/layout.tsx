@@ -21,12 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.className} flex flex-col h-screen `}>
-        <Navbar />
-        <main className="flex-grow flex-1 px-5 md:px-12 lg:px-28">
-          {children}
-        </main>
-        <Footer />
+      <body className={`${outfit.className} flex flex-col h-screen`}>
+        {children}
       </body>
     </html>
   );

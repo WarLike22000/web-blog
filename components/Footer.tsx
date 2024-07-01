@@ -1,6 +1,6 @@
-import { Facebook, Github, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import Social from "./Social";
 
 const Footer = () => {
     return ( 
@@ -13,17 +13,7 @@ const Footer = () => {
                 <Link className="text-white hover:text-slate-300 transition" href="#">About us</Link>
                 <Link className="text-white hover:text-slate-300 transition" href="#">Contact us</Link>
             </div>
-            <div className="flex items-center gap-3 text-slate-800">
-                <div className="p-2 rounded-full bg-slate-50 cursor-pointer hover:bg-slate-300 transition">
-                    <Facebook />
-                </div>
-                <div className="p-2 rounded-full bg-slate-50 cursor-pointer hover:bg-slate-300 transition">
-                    <Twitter />
-                </div>
-                <div className="p-2 rounded-full bg-slate-50 cursor-pointer hover:bg-slate-300 transition">
-                    <Github />
-                </div>
-            </div>
+            <Social />
         </footer>
      );
 }
