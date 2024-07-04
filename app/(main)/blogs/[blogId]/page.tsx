@@ -9,8 +9,8 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
     
     return ( 
         <>
-            <div className="bg-gray-800 w-full h-[500px]" />
-            <div className="flex flex-col gap-4 items-center text-center px-5 md:px-12 lg:px-28 mt-[-550px] py-20">
+            <div className="bg-gray-800 w-full h-[250px] sm:h-[500px]" />
+            <div className="flex flex-col gap-4 items-center text-center px-5 md:px-12 lg:px-28 mt-[-250px] sm:mt-[-550px] py-20">
                 <section className="flex flex-col items-center gap-2">
                     <h3 className="text-3xl md:text-5xl text-white text-center">
                         {data.title}
@@ -42,7 +42,7 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                         </h4>
                     </div>
                     <p className="text-lg text-gray-600">
-                        {data.date}
+                        {/* {data.date} */}
                     </p>
                 </section>
 

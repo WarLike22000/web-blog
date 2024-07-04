@@ -2,7 +2,7 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 
-import { login } from "@/actions/user";
+import { register } from "@/actions/user";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Image from "next/image";
@@ -10,14 +10,12 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Loader2 } from "lucide-react";
-import { useEffect } from "react";
 
-const Login = () => {
-    const [response, formAction] = useFormState(login, null);
-    console.log(response)
+const Register = () => {
+    const [response, formAction] = useFormState(register, null);
     const router = useRouter();
     const session = useSession();
-
+    
     if(response?.success && !response.error) {
         toast.success(response?.message!);
         router.push("/");
@@ -25,19 +23,9 @@ const Login = () => {
         toast.error(response?.message!);
     };
 
-    useEffect(() => {
-        router.refresh();
-    }, [response?.success]);
-
-    useEffect(() => {
-        if(session.data) {
-            router.push("/");
-        }
-
-        return () => {
-            router.refresh();
-        }
-    }, [session]);
+    if(session.data) {
+        router.push("/");
+    }
     
     
     return ( 
@@ -49,6 +37,10 @@ const Login = () => {
                     width={200}
                     height={200}
                 />
+            </section>
+            <section className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-gray-700">Name</label>
+                <Input type="text" name="name" placeholder="enter your name" id="name" />
             </section>
             <section className="flex flex-col gap-2">
                 <label htmlFor="email" className="text-gray-700">Email</label>
@@ -69,9 +61,9 @@ function Submit() {
     const { pending } = useFormStatus();
     return (
         <Button disabled={pending} type="submit" className="disabled:cursor-not-allowed disabled:bg-opacity-75 transition">
-            {pending ? <Loader2 size={20} className="animate-spin mx-auto"/> : "Sign in"}
+            {pending ? <Loader2 size={20} className="animate-spin mx-auto"/> : "Sign up"}
         </Button>
     )
 }
 
-export default Login;
+export default Register;

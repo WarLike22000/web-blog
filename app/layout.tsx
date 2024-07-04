@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
+import { SessionProvider } from "next-auth/react";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -22,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} flex flex-col h-screen`}>
-        {children}
+        <SessionProvider>
+            {children}
+            <Toaster />
+          </SessionProvider>
       </body>
     </html>
   );

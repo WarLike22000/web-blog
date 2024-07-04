@@ -11,9 +11,6 @@ export const {
     auth
 } = NextAuth({
     adapter: PrismaAdapter(prisma),
-    pages: {
-        signIn: "/login"
-    },
     providers: [
         Credentials({
             name: "credentials",
@@ -52,5 +49,8 @@ export const {
     session: {
         strategy: "jwt"
     },
-    secret: process.env.AUTH_SECRET
+    secret: process.env.AUTH_SECRET,
+    pages: {
+        signIn: `${process.env.NEXT_PUBLIC_URL}/login`
+    },
 });

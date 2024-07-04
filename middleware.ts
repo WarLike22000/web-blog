@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import { NextRequest } from "next/server";
 
 export default auth((req: NextRequest | any) => {
-    if(!req.auth && req.nextUrl.pathname !== "/login") {
+    if(!req.auth && req.nextUrl.pathname !== "/login" && req.nextUrl.pathname !== "/register") {
         const newUrl = new URL("/login", req.nextUrl.origin);
         return Response.redirect(newUrl);
     };

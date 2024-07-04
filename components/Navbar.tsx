@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const Navbar = () => {
     return ( 
-        <div className="py-5 px-5 md:px-12 lg:px-28">
+        <div className="py-5 px-5 md:px-12 lg:px-28 relative z-20">
             <div className="flex justify-between items-center">
                 <Link href="/">
                     <Image

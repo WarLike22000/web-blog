@@ -4,6 +4,8 @@ export interface ButtonProps {
     children: React.ReactNode;
     className?: string
     onClick?: () => void;
+    type?: "submit" | "button";
+    disabled?: boolean;
 };
 
 export interface BlogCardProps {
@@ -20,4 +22,19 @@ export interface MenuProps {
     children: React.ReactNode;
     open: boolean;
     setOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export interface InputProps {
+    className?: string;
+    type: "text" | "email" | "password";
+    placeholder?: string;
+    id?: string;
+    name?: string;
+};
+
+export interface IUser {
+    id: number;
+    name: string;
+    email: string;
+    password: string
 };
