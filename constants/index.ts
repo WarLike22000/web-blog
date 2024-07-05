@@ -1,4 +1,5 @@
 import { BlogCardProps } from "@/types";
+import { FilePlus2, Newspaper, UserCog } from "lucide-react";
 
 export const buttonCategory = [
     {
@@ -82,5 +83,23 @@ export const blogs: BlogCardProps[] = [
         category: "lifestyle",
         author: "Alireza",
         authorImage: "/assets/blog.svg",
+    },
+];
+
+export const sidebar = [
+    {
+        label: "Profile",
+        href: "/profile",
+        Icon: UserCog 
+    },
+    {
+        label: "Create Blog",
+        href: "/create-blog",
+        Icon: FilePlus2 
+    },
+    {
+        label: "My Blogs",
+        href: "/my-blogs",
+        Icon: Newspaper 
     },
 ];

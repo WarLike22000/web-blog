@@ -1,5 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 
+export interface IResponse {
+    error: boolean;
+    success?: boolean;
+    user?: IUser;
+    message?: string;
+};
+
 export interface ButtonProps {
     children: React.ReactNode;
     className?: string
@@ -30,11 +37,22 @@ export interface InputProps {
     placeholder?: string;
     id?: string;
     name?: string;
+    required?: boolean;
+};
+
+export interface TextareaProps {
+    className?: string;
+    placeholder?: string;
+    id?: string;
+    name?: string;
+    required?: boolean;
+    rows?: number;
 };
 
 export interface IUser {
     id: number;
     name: string;
     email: string;
-    password: string
+    password: string;
+    image: string | null;
 };

@@ -7,9 +7,11 @@ const Input = ({
     placeholder,
     id,
     name,
+    required,
 }: InputProps) => {
     return ( 
         <input
+            required={required}
             name={name}
             type={type}
             className={clsx(`

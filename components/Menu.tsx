@@ -11,14 +11,18 @@ const variant: Variants = {
         opacity: 1,
         display: "block",
         position: "absolute",
-        top: 35,
-        right: 30,
-        zIndex: 5
+        top: 36,
+        right: 35,
+        zIndex: 5,
+        scale: 1
     },
     close: {
         opacity: 0,
         position: "absolute",
-        top: 30,
+        top: 36,
+        right: 35,
+        scale: 0,
+        display: "none"
     },
 };
 

@@ -1,17 +1,10 @@
 "use server";
 
 import { auth, signIn } from "@/auth";
-import { IUser } from "@/types";
+import { IResponse, IUser } from "@/types";
 import axios from "axios";
 import { redirect } from "next/navigation";
 import * as z from "zod";
-
-interface IResponse {
-    error: boolean;
-    success?: boolean;
-    user?: IUser;
-    message?: string;
-};
 
 const registerSchema = z.object({
     name: z.string().min(1, { message: "Field is require" }),
