@@ -6,7 +6,7 @@ import Input from "@/components/Input";
 import Textarea from "@/components/Textarea";
 import { ImageUp, Loader2 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import toast from "react-hot-toast";
 
@@ -15,11 +15,13 @@ const Create = () => {
     const [response, action] = useFormState(createBlog, null);
     const [image, setImage] = useState<File>();
 
-    if(response?.success && !response.message) {
-        toast.success(response.message!);
-    } else {
-        toast.error(response?.message!);
-    }
+    useEffect(() => {
+        if(response?.success && response.message) {
+            toast.success(response.message!);
+        } else if(response?.error) {
+            toast.error(response?.message!);
+        }
+    }, [response]);
     
     return ( 
         <form action={action} className="space-y-8">
