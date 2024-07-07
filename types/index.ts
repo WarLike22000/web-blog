@@ -21,8 +21,9 @@ export interface BlogCardProps {
     description: string;
     image: string;
     category: string;
-    author: string;
-    authorImage: string;
+    author: IUser;
+    authorId?: number;
+    published?: boolean
 };
 
 export interface MenuProps {

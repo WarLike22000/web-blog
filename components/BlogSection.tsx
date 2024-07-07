@@ -5,12 +5,12 @@ import BlogCard from "./BlogCard";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { blogs, buttonCategory } from "@/constants";
+import { buttonCategory } from "@/constants";
 import Button from "./Button";
 import { ArrowRight, ListFilter } from "lucide-react";
 import clsx from "clsx";
 import Menu from "./Menu";
-import { useClickOutside } from "@/hook/useClickOutside";
+import { BlogCardProps } from "@/types";
 
 const variantCards: Variants = {
     offscreen: {
@@ -28,17 +28,17 @@ const variantCards: Variants = {
     },
 };
 
-const BlogSection = () => {
+const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
 
     const [isMounted, setIsMounted] = useState(false);
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState("all");
 
-    const data = blogs.filter((blog) => blog.category === category);
+    const data = blogs?.filter((blog) => blog.category === category);
 
     useEffect(() => {
         setIsMounted(true);
-    });
+    }, []);
 
     if(!isMounted) return null;
     
@@ -70,7 +70,7 @@ const BlogSection = () => {
                                         setOpen(false);
                                     }}
                                     className={clsx("text-base text-center text-white py-1 px-4 cursor-pointer hover:bg-slate-100 hover:text-slate-800 transition-all",
-                                        category === name && "bg-slate-100 text-gray-900 hover:bg-slate-100")}
+                                        category === name && "bg-slate-100 text-black hover:bg-slate-100")}
                                 >
                                     {label}
                                 </h6>
@@ -88,7 +88,7 @@ const BlogSection = () => {
                     {
                         category === "all" ? (
                             <>
-                                {blogs.map(({ id, title, description, image, category, author, authorImage }) => (
+                                {blogs?.map(({ id, title, description, image, category, author }) => (
                                     <BlogCard
                                         id={id}
                                         title={title}
@@ -96,13 +96,12 @@ const BlogSection = () => {
                                         image={image}
                                         category={category}
                                         author={author}
-                                        authorImage={authorImage}
                                     />
                                 ))}
                             </>
                         ) : (
                             <>
-                                {data.map(({ id, title, description, image, category, author, authorImage }) => (
+                                {data?.map(({ id, title, description, image, category, author }) => (
                                     <BlogCard
                                         id={id}
                                         title={title}
@@ -110,7 +109,6 @@ const BlogSection = () => {
                                         image={image}
                                         category={category}
                                         author={author}
-                                        authorImage={authorImage}
                                     />
                                 ))}
                             </>

@@ -24,7 +24,7 @@ const Create = () => {
     }, [response]);
     
     return ( 
-        <form action={action} className="space-y-8">
+        <form action={action} className="space-y-8 w-full">
             <div className="flex flex-col gap-2">
                 <h6 className="text-xl">
                     Upload thumbnail
@@ -37,10 +37,10 @@ const Create = () => {
                                 alt="upload image"
                                 width={500}
                                 height={500}
-                                className="object-cover rounded-lg"
+                                className="object-cover rounded-lg w-full"
                             />
                         ) : (
-                            <div className="border-dashed p-6 border flex items-center justify-center rounded-lg text-gray-400 max-w-[600px] h-[200px]">
+                            <div className="border-dashed p-6 border-2 flex items-center justify-center rounded-lg text-gray-400 w-full h-[200px]">
                                 <ImageUp size={50}/>
                             </div>
                         )

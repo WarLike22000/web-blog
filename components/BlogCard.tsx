@@ -12,7 +12,6 @@ const BlogCard = ({
     image,
     category,
     author,
-    authorImage,
 }: BlogCardProps) => {
 
     const router = useRouter();
@@ -27,18 +26,18 @@ const BlogCard = ({
                 <motion.img
                     src={image}
                     alt="blog"
-                    className="object-cover w-full h-[150px]"
+                    className="object-cover w-full h-[150px] rounded-lg"
                 />
             </motion.div>
             <div className="flex items-center gap-2 text-sm pt-2">
                 <Image
-                    src={authorImage}
+                    src="/assets/blog.svg"
                     alt="author"
                     width={50}
                     height={50}
                     className="rounded-full"
                 />
-                {author}
+                {author.name}
             </div>
             <div className="text-sm text-slate-400">
                 {category}

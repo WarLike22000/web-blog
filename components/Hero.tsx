@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Button from "./Button";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const variantImage: Variants = {
     offscreen: {
@@ -38,6 +39,9 @@ const variantText: Variants = {
 };
 
 const Hero = () => {
+
+    const session = useSession();
+    
     return ( 
         <motion.div
             className="w-full flex flex-col md:flex-row justify-between items-center gap-y-2 gap-x-16 mx-auto"
@@ -61,14 +65,16 @@ const Hero = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <div className="flex items-center gap-2">
-                    <Button className="rounded-md">
-                        Create Now
-                    </Button>
-                    <Button className="rounded-md">
-                        <Link href="/blogs">
-                            All Blogs
-                        </Link>
-                    </Button>
+                    <Link href={session ? "/create-blog" : "/login"}>
+                        <Button className="rounded-md">
+                            Create Now
+                        </Button>
+                    </Link>
+                    <Link href="/blogs">
+                        <Button className="rounded-md">
+                                All Blogs
+                        </Button>
+                    </Link>
                 </div>
             </motion.div>
         </motion.div>

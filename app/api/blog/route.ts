@@ -1,11 +1,24 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
 import prisma from "@/libs/db";
 import { getExtname } from "@/utils/getExtname";
 
-// export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
+    try {
+        const blogs = await prisma.blog.findMany({
+            where: {
+                published: true
+            },
+            include: {
+                author: true
+            }
+        });
 
-// };
+        return NextResponse.json(blogs);
+    } catch (error) {
+        return new NextResponse("Internal Error", { status: 500 });
+    }
+};
 
 export async function POST(req: Request) {
     try {

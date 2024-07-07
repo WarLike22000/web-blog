@@ -1,11 +1,18 @@
+import { getBlogs } from "@/actions/blog";
 import BlogSection from "@/components/BlogSection";
 import Hero from "@/components/Hero";
+import { BlogCardProps } from "@/types";
 
-export default function Home() {
+export default async function Home() {
+
+  const blogs = await getBlogs();
+  
   return (
     <div className="flex flex-col space-y-8 px-5 md:px-12 lg:px-28">
       <Hero />
-      <BlogSection />
+      <BlogSection
+        blogs={blogs}
+      />
     </div>
   );
 }

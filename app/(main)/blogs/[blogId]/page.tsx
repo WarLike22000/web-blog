@@ -1,12 +1,11 @@
+import { getBlog } from "@/actions/blog";
 import Social from "@/components/Social";
-import { blogs } from "@/constants";
-import { BlogCardProps } from "@/types";
 import Image from "next/image";
 
 const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => {
 
-    const [ data ]: BlogCardProps[] = blogs.filter((blog) => blog.id == +blogId)
-    
+    const data = await getBlog(blogId);
+
     return ( 
         <>
             <div className="bg-gray-800 w-full h-[250px] sm:h-[500px]" />
@@ -31,18 +30,18 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                 <section className="flex justify-between gap-4 items-center w-full max-w-xl">
                     <div className="flex items-center gap-2">
                         <Image
-                            src={data.authorImage}
-                            alt={data.author}
+                            src="/assets/blog.svg"
+                            alt={data.author.name}
                             width={50}
                             height={50}
                             className="rounded-full bg-gray-400"
                         />
                         <h4 className="text-lg text-gray-600">
-                            {data.author}
+                            {data.author.name}
                         </h4>
                     </div>
                     <p className="text-lg text-gray-600">
-                        {/* {data.date} */}
+                        {data.createdAt}
                     </p>
                 </section>
 
