@@ -97,7 +97,7 @@ export const getBlogsUser = async () => {
 
 export const updateBlog = async (blogData: object, id: number) => {
     try {
-        const currentUser = await getCurrentUser() 
+        const currentUser = await getCurrentUser();
         if(!currentUser) {
             throw new Error("User Unauthorized");
         };
@@ -110,7 +110,7 @@ export const updateBlog = async (blogData: object, id: number) => {
                 id
             },
         });
-console.log({...blogData})
+        
         return blog
     } catch (error) {
         console.log(error);

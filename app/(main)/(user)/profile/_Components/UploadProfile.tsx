@@ -1,0 +1,93 @@
+"use client";
+
+import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import axios from "axios";
+import clsx from "clsx";
+import { Camera, ImageUp, X } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
+const UploadProfile = () => {
+
+    const [open, setOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [image, setImage] = useState<File | null>(null);
+    const router = useRouter();
+
+    const uploadHandler = async () => {
+        setIsLoading(true);
+        try {
+            const formData = new FormData();
+            formData.append("image", image!)
+            await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/profile`, formData);
+            toast.success("upload successfully");
+            setOpen(false)
+            router.refresh();
+        } catch (error) {
+            console.log(error)
+            toast.error("Something went wrong");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    
+    return ( 
+        <div>
+            <div onClick={() => setOpen(true)} className="p-3 text-white bg-gray-500 rounded-full cursor-pointer hover:bg-gray-400 transition-all absolute z-20 bottom-1 left-1">
+                <Camera />
+            </div>
+            <input
+                id="camera"
+                type="file"
+                disabled={isLoading}
+                hidden
+                onChange={(e) => setImage(e.target.files![0])}
+            />
+
+            <Modal open={open} setOpen={setOpen}>
+                <section className="w-full max-w-md bg-white rounded-lg border flex items-center justify-center relative">
+                    <X size={25} onClick={() => {
+                        setOpen(false);
+                        setImage(null);
+                    }} className="absolute top-1 right-1 text-gray-600 cursor-pointer" />
+
+                    <div className="flex flex-col gap-3 p-6 w-full">
+                        <p className="text-slate-600 text-xl">
+                            Profile image
+                        </p>
+
+                        <label className={clsx(
+                            "cursor-pointer w-full transition-all",
+                            isLoading && "cursor-not-allowed opacity-70"
+                        )} htmlFor="camera">
+                            {
+                                image ? (
+                                    <Image
+                                        src={URL.createObjectURL(image)}
+                                        alt="upload image"
+                                        width={500}
+                                        height={500}
+                                        className="object-cover rounded-lg w-full"
+                                    />
+                                ) : (
+                                    <div className="border-dashed p-6 border-2 flex items-center justify-center rounded-lg text-gray-400 w-full h-full">
+                                        <ImageUp size={50}/>
+                                    </div>
+                                )
+                            }
+                        </label>
+
+                        <Button onClick={uploadHandler} disabled={isLoading}>
+                            Upload
+                        </Button>
+                    </div>
+                </section>
+            </Modal>
+        </div>
+     );
+}
+ 
+export default UploadProfile;

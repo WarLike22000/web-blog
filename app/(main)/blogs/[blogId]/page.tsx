@@ -30,7 +30,7 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                 <section className="flex justify-between gap-4 items-center w-full max-w-xl">
                     <div className="flex items-center gap-2">
                         <Image
-                            src="/assets/blog.svg"
+                            src="/assets/placeholder.jpg"
                             alt={data.author.name}
                             width={50}
                             height={50}

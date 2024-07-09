@@ -18,6 +18,11 @@ const UserButton = () => {
             </Button>
             <Menu open={open} setOpen={setOpen}>
                 <ul className="flex flex-col text-center bg-gray-600 text-white w-[200px] cursor-pointer transition text-sm rounded-lg overflow-hidden">
+                    <Link href="/profile" onClick={() => setOpen(false)}>
+                        <li className="bg-gray-600 hover:bg-gray-400 transition-colors p-2 w-full">
+                            Profile
+                        </li>
+                    </Link>
                     <Link href="/create-blog" onClick={() => setOpen(false)}>
                         <li className="bg-gray-600 hover:bg-gray-400 transition-colors p-2 w-full">
                                 Create Blog

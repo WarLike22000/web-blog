@@ -32,6 +32,12 @@ export interface MenuProps {
     setOpen: Dispatch<SetStateAction<boolean>>;
 };
 
+export interface ModalProps {
+    children: React.ReactNode;
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>;
+};
+
 export interface InputProps {
     className?: string;
     type: "text" | "email" | "password";

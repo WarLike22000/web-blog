@@ -1,6 +1,8 @@
 import { getBlogsUser } from "@/actions/blog";
 import Image from "next/image";
 import Published from "./_Components/published";
+import Button from "@/components/Button";
+import Link from "next/link";
 
 const MyBlogs = async () => {
 
@@ -50,7 +52,7 @@ const MyBlogs = async () => {
                             </td>
 
                             <td className="p-2 border-r">
-                                {blog.createdAt.getDate()} / {blog.createdAt.getDay()} / {blog.createdAt.getFullYear()}
+                                {blog.createdAt.getMonth()} / {blog.createdAt.getDate()} / {blog.createdAt.getFullYear()}
                             </td>
 
                             <td className="p-2 mx-auto">
@@ -60,6 +62,22 @@ const MyBlogs = async () => {
                     ))
                 }
             </table>
+            {
+                blogsUser?.length === 0 && (
+                    <div className="w-full flex items-center justify-center h-[200px]">
+                        <div className="flex flex-col items-center gap-2">
+                            <p>
+                                Empty
+                            </p>
+                            <Link href="/create-blog">
+                                <Button>
+                                    Create Blog
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+                )
+            }
         </section>
      );
 }

@@ -31,7 +31,7 @@ const BlogCard = ({
             </motion.div>
             <div className="flex items-center gap-2 text-sm pt-2">
                 <Image
-                    src="/assets/blog.svg"
+                    src={author.image ? author.image : "/assets/placeholder.jpg"}
                     alt="author"
                     width={50}
                     height={50}
