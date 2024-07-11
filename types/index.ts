@@ -4,6 +4,7 @@ export interface IResponse {
     error: boolean;
     success?: boolean;
     user?: IUser;
+    blog?: BlogCardProps;
     message?: string;
 };
 
@@ -21,7 +22,6 @@ export interface BlogCardProps {
     description: string;
     image: string;
     category: string;
-    author: IUser;
     authorId?: number;
     published?: boolean
 };

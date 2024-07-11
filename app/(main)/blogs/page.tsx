@@ -1,7 +1,18 @@
-const Blogs = () => {
+import { getBlogsBySearch } from "@/actions/blog";
+
+const Blogs = async () => {
+
+    const blogs = await getBlogsBySearch("tes");
+    
     return ( 
         <div>
-            Blog Page
+            {
+                blogs?.map((blog) => (
+                    <div>
+                        {blog.title}
+                    </div>
+                ))
+            }
         </div>
      );
 }

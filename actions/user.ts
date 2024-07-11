@@ -5,6 +5,8 @@ import { IResponse, IUser } from "@/types";
 import axios from "axios";
 import { redirect } from "next/navigation";
 import * as z from "zod";
+import { getCurrentUser } from "./getCurrentUser";
+import prisma from "@/libs/db";
 
 const registerSchema = z.object({
     name: z.string().min(1, { message: "Field is require" }),
@@ -97,4 +99,25 @@ export const login = async (state: any, formData: FormData): Promise<IResponse |
         console.log(error);
     }
     redirect("/");
+};
+
+export const updateUser = async (data: object) => {
+    try {
+        const currentUser = await getCurrentUser();
+
+        if(!currentUser) {
+            throw new Error("User Unauthorized");
+        };
+
+        const user = await prisma.user.update({
+            where: {
+                id: currentUser.id
+            },
+            data
+        });
+
+        return user;
+    } catch (error) {
+        console.log(error);
+    }
 };

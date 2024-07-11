@@ -4,6 +4,7 @@ import { createBlog } from "@/actions/blog";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Textarea from "@/components/Textarea";
+import { UploadDropzone } from "@/utils/uploadthing";
 import { ImageUp, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -13,11 +14,13 @@ import toast from "react-hot-toast";
 const Create = () => {
 
     const [response, action] = useFormState(createBlog, null);
-    const [image, setImage] = useState<File>();
+    const [image, setImage] = useState("");
 
     useEffect(() => {
-        if(response?.success && response.message) {
-            toast.success(response.message!);
+        if(response?.success && response.message && response.blog?.id) {
+            toast.success(
+                response.message
+            );
         } else if(response?.error) {
             toast.error(response?.message!);
         }
@@ -33,20 +36,27 @@ const Create = () => {
                     {
                         image ? (
                             <Image
-                                src={image ? URL.createObjectURL(image) : "/upload-image.jpg"}
+                                src={image}
                                 alt="upload image"
                                 width={500}
                                 height={500}
                                 className="object-cover rounded-lg w-full"
                             />
                         ) : (
-                            <div className="border-dashed p-6 border-2 flex items-center justify-center rounded-lg text-gray-400 w-full h-[200px]">
-                                <ImageUp size={50}/>
-                            </div>
+                            <UploadDropzone
+                                endpoint="imageUploader"
+                                onClientUploadComplete={async (res) => {
+                                    setImage(res[0].url);
+                                    toast.success("upload successfully");
+                                }}
+                                onUploadError={async (error: Error) => {
+                                    toast.error(error.message);
+                                }}
+                            />
                         )
                     }
                 </label>
-                <input name="image" onChange={(e) => setImage(e.target.files![0])} hidden id="image" type="file" required />
+                <input name="image" value={image} hidden id="image" required />
             </div>
             <div className="flex flex-col gap-2">
                 <label className="text-xl" htmlFor="title">

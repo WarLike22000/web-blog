@@ -1,6 +1,5 @@
 "use server";
 
-import { auth } from "@/auth";
 import { BlogCardProps, IResponse } from "@/types";
 import axios from "axios";
 import * as z from "zod";
@@ -31,10 +30,10 @@ export const getBlogs = async (): Promise<BlogCardProps[] | undefined> => {
 
 export const createBlog = async (state: any, formData: FormData): Promise<IResponse | undefined> => {
     try {
-        const title = formData.get("title");
-        const description = formData.get("description");
-        const category = formData.get("category");
-        const image = formData.get("image");
+        const title = formData.get("title") as string;
+        const image = formData.get("image") as string;
+        const description = formData.get("description") as string;
+        const category = formData.get("category") as string;
         
 
         const user = await getCurrentUser();
@@ -57,20 +56,40 @@ export const createBlog = async (state: any, formData: FormData): Promise<IRespo
         };
         formData.append("userId", user.id as any);
         
-        const blog = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/blog`, formData);
+        const blog = await prisma.blog.create({
+            data: {
+                title,
+                description,
+                image,
+                authorId: user.id,
+                category,
+            }
+        });
 
-        return blog.data;
+        return {
+            error: false,
+            success: true,
+            message: "blog created",
+            blog
+        };
 
     } catch (error) {
         console.log(error);
     }
 };
 
-export const getBlog = async (id: string) => {
+export const getBlog = async (id: number) => {
     try {
-        const blog = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/blog/${id}`);
+        const blog = await prisma.blog.findFirst({
+            where: {
+                id
+            },
+            include: {
+                author: true
+            }
+        });
 
-        return blog.data;
+        return blog;
     } catch (error) {
         console.log(error);
     }
@@ -112,6 +131,22 @@ export const updateBlog = async (blogData: object, id: number) => {
         });
         
         return blog
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getBlogsBySearch = async (search: string) => {
+    try {
+        const blogs = await prisma.blog.findMany({
+            where: {
+                title: {
+                    search
+                }
+            }
+        });
+
+        return blogs;
     } catch (error) {
         console.log(error);
     }
