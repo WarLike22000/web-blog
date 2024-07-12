@@ -54,7 +54,6 @@ export const createBlog = async (state: any, formData: FormData): Promise<IRespo
                 message: "user Unauthenticated",
             };
         };
-        formData.append("userId", user.id as any);
         
         const blog = await prisma.blog.create({
             data: {
@@ -143,10 +142,32 @@ export const getBlogsBySearch = async (search: string) => {
                 title: {
                     search
                 }
+            },
+            include: {
+                author: true
             }
         });
 
         return blogs;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteBlog = async (id: number) => {
+    try {
+        const currentUser = await getCurrentUser();
+        if(!currentUser) {
+            throw new Error("User Unauthorized");
+        };
+
+        const deleteBlog = await prisma.blog.delete({
+            where: {
+                id
+            }
+        });
+
+        return deleteBlog;
     } catch (error) {
         console.log(error);
     }

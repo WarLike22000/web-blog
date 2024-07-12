@@ -8,10 +8,12 @@ const Input = ({
     id,
     name,
     required,
+    onChange
 }: InputProps) => {
     return ( 
         <input
             required={required}
+            onChange={onChange}
             name={name}
             type={type}
             className={clsx(`

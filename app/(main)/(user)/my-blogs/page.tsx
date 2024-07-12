@@ -3,6 +3,7 @@ import Image from "next/image";
 import Published from "./_Components/published";
 import Button from "@/components/Button";
 import Link from "next/link";
+import DeleteBlog from "./_Components/DeleteBlog";
 
 const MyBlogs = async () => {
 
@@ -27,6 +28,8 @@ const MyBlogs = async () => {
                     <th>
                         published
                     </th>
+                    <th>
+                        delete                    </th>
                 </tr>
 
                 {
@@ -57,6 +60,10 @@ const MyBlogs = async () => {
 
                             <td className="p-2 mx-auto">
                                 <Published id={blog.id} published={blog.published} />
+                            </td>
+                            
+                            <td className="p-2 mx-auto">
+                                <DeleteBlog id={blog.id} />
                             </td>
                         </tr>
                     ))

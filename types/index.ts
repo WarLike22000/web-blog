@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 export interface IResponse {
     error: boolean;
@@ -22,7 +22,7 @@ export interface BlogCardProps {
     description: string;
     image: string;
     category: string;
-    authorId?: number;
+    author?: IUser;
     published?: boolean
 };
 
@@ -45,6 +45,7 @@ export interface InputProps {
     id?: string;
     name?: string;
     required?: boolean;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export interface TextareaProps {

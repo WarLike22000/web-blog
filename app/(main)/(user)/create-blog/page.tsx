@@ -10,17 +10,20 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Create = () => {
 
     const [response, action] = useFormState(createBlog, null);
     const [image, setImage] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
         if(response?.success && response.message && response.blog?.id) {
             toast.success(
                 response.message
             );
+            router.push("/my-blogs");
         } else if(response?.error) {
             toast.error(response?.message!);
         }
