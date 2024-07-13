@@ -17,9 +17,6 @@ export default withUt({
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "lifestyle": "url('/assets/lifestyle.jpg')",
-        "startup": "url('/assets/startup.jpg')",
-        "technology": "url('/assets/technology.jpg')",
       },
     },
   },

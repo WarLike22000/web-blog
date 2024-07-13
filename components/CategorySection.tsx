@@ -47,7 +47,7 @@ const CategorySection = () => {
         <h2 className="text-gray-600 text-3xl">
             Category
         </h2>
-            <section className="grid grid-cols-1 sm:grid-cols-3 sm:grid-rows-10 gap-2 w-full sm:h-[400px] md:h-[600px]">
+            <section className="grid grid-cols-1 sm:grid-cols-3 sm:grid-rows-10 gap-2 w-full sm:h-[400px] md:h-[600px] drop-shadow-2xl">
                 <motion.div variants={variantLeft} className="sm:row-span-10 sm:col-span-1 w-full h-[300px] sm:h-[100%] relative select-none rounded-2xl overflow-hidden border">
                     <Image
                         src="/assets/lifestyle.jpg"
