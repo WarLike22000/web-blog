@@ -51,7 +51,7 @@ const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
             viewport={{ once: true, amount: 0.2 }}
         >
             <div className="text-xl md:text-3xl flex items-center justify-between">
-                <h1>
+                <h1 className='text-gray-600 text-3xl'>
                     Latest blogs
                 </h1>
                 <section className="relative flex items-center gap-2">
