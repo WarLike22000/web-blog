@@ -63,14 +63,14 @@ const CommentsList = ({
                 </Modal>
             </section>
 
-            <section>
+            <section className="border mt-5 rounded-lg bg-white">
                 {
                     comments?.length === 0 ? (
-                        <div className="w-full h-full pt-8">
+                        <div className="w-full h-full p-5">
                             <EmptyState icon={SearchX} label="No Comments Found" />
                         </div>
                     ) : (
-                        <div className="flex flex-col gap-3 pt-8">
+                        <div className="flex flex-col gap-3 p-5">
                             {
                                 comments?.map(({ description, user, createdAt, id }) => (
                                     <Suspense fallback={<h1>Loading...</h1>}>
