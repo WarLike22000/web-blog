@@ -39,14 +39,14 @@ const CommentBox = ({
     
     return ( 
         <div className="w-full p-2 flex gap-3 border rounded-xl bg-gray-200">
-            <Image
-                src={user.image! ?? "/assets/placeholder.jpg"}
-                alt={user.name}
-                width={50}
-                height={50}
-                className="object-contain rounded-full"
-            />
-            <div className="flex flex-col gap-y-4 w-full">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                <Image
+                    src={user.image! ?? "/assets/placeholder.jpg"}
+                    alt={user.name}
+                    fill
+                />
+            </div>
+            <div className="flex flex-col gap-y-2 w-full">
                 <div className="flex items-center justify-between w-full">
                     <section className="flex items-center gap-3">
                         <p>{user.name}</p> {"."}

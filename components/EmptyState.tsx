@@ -7,8 +7,8 @@ const EmptyState = ({
     return ( 
         <section className="flex items-center justify-center">
             <div className="flex flex-col gap-3 items-center text-gray-600">
-                <Icon size={50} />
-                <h6 className="text-xl sm:text-2xl text-center">
+                <Icon size={40} />
+                <h6 className="text-lg sm:text-xl text-center">
                     {label}
                 </h6>
             </div>
