@@ -10,7 +10,7 @@ const Profile = async () => {
     
     return ( 
         <div className="flex flex-col items-center w-full gap-10">
-            <div className="flex items-center justify-between w-full">
+            <div className="flex sm:flex-row flex-col sm:items-center sm:justify-between w-full gap-4">
                 <div className="flex items-end gap-2">
                     <section className="relative">
                         <Image

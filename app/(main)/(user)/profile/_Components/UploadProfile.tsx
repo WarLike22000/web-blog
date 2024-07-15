@@ -35,8 +35,8 @@ const UploadProfile = () => {
     
     return ( 
         <div>
-            <div onClick={() => setOpen(true)} className="p-3 text-white bg-gray-500 rounded-full cursor-pointer hover:bg-gray-400 transition-all absolute z-20 bottom-1 left-1">
-                <Camera />
+            <div onClick={() => setOpen(true)} className="p-2 sm:p-3 text-white bg-gray-500 rounded-full cursor-pointer hover:bg-gray-400 transition-all absolute z-20 bottom-0 left-0 sm:bottom-1 sm:left-1">
+                <Camera className="w-6 h-6" />
             </div>
             {/* <input
                 id="camera"

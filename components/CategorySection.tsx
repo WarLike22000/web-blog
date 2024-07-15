@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Button from "./Button";
 import { motion, Variants } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const variantLeft: Variants = {
     offscreen: {
@@ -37,14 +38,17 @@ const variantRight: Variants = {
 };
 
 const CategorySection = () => {
+
+    const router = useRouter();
+    
     return ( 
     <motion.div
-        className="space-y-4"
+        className="space-y-6"
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ once: true, amount: 0.4 }}
     >
-        <h2 className="text-gray-600 text-3xl">
+        <h2 className="text-gray-600 text-xl sm:text-3xl">
             Category
         </h2>
             <section className="grid grid-cols-1 sm:grid-cols-3 sm:grid-rows-10 gap-2 w-full sm:h-[400px] md:h-[600px] drop-shadow-2xl">
@@ -64,7 +68,7 @@ const CategorySection = () => {
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
                             </p>
                         </div>
-                        <Button className="sm:text-xl">
+                        <Button onClick={() => router.push("/blogs?category=lifestyle", { scroll: true })} className="sm:text-xl">
                             see more
                         </Button>
                     </div>
@@ -82,10 +86,10 @@ const CategorySection = () => {
                                 Startup
                             </h2>
                             <p className="text-lg">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
                             </p>
                         </div>
-                        <Button className="sm:text-xl">
+                        <Button onClick={() => router.push("/blogs?category=startup", { scroll: true })} className="sm:text-xl">
                             see more
                         </Button>
                     </div>
@@ -103,10 +107,10 @@ const CategorySection = () => {
                                 Technology
                             </h2>
                             <p className="text-lg">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
                             </p>
                         </div>
-                        <Button className="sm:text-xl">
+                        <Button onClick={() => router.push("/blogs?category=technology", { scroll: true })} className="sm:text-xl">
                             see more
                         </Button>
                     </div>

@@ -1,3 +1,4 @@
+import { LucideIcon } from "lucide-react";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 export interface IResponse {
@@ -63,4 +64,9 @@ export interface IUser {
     email: string;
     password: string;
     image: string | null;
+};
+
+export interface EmptyStateProps {
+    label: string;
+    icon: LucideIcon;
 };

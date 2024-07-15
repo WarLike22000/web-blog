@@ -11,9 +11,7 @@ export default async function Home() {
     <div className="flex flex-col space-y-8 px-5 md:px-12 lg:px-28">
       <Hero />
       <CategorySection />
-      <BlogSection
-        blogs={blogs?.slice(0, 8)}
-      />
+      { blogs?.length! > 0 && <BlogSection blogs={blogs?.slice(0, 8)} /> }
     </div>
   );
 }

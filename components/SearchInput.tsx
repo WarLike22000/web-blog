@@ -2,7 +2,8 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import Input from "./Input";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import Button from "./Button";
 
 const SearchInput = () => {
 
@@ -12,24 +13,24 @@ const SearchInput = () => {
     const pathname = usePathname();
 
     const title = searchParams.get("title");
+    const category = searchParams.get("category");
     
-    useEffect(() => {
-        if(!title && !search) {
-            router.push(pathname);
-        } else {
-            router.push(pathname + "?title=" + search);
-        };
-    }, [search]);
-
+    const searchHandler = (e: ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        router.push(pathname + "?title=" + search);
+    }
     
     return ( 
-        <section>
+        <form onSubmit={searchHandler} className="flex items-center justify-between gap-5">
             <Input
                 type="text"
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="search here..."
             />
-        </section>
+            <Button type="submit">
+                Search
+            </Button>
+        </form>
      );
 }
  

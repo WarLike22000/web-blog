@@ -51,7 +51,7 @@ const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
             viewport={{ once: true, amount: 0.2 }}
         >
             <div className="text-xl md:text-3xl flex items-center justify-between">
-                <h1 className='text-gray-600 text-3xl'>
+                <h1 className='text-gray-600 text-xl sm:text-3xl'>
                     Latest blogs
                 </h1>
                 <section className="relative flex items-center gap-2">
@@ -70,7 +70,7 @@ const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
                                         setOpen(false);
                                     }}
                                     className={clsx("text-base text-center text-white py-1 px-4 cursor-pointer hover:bg-slate-100 hover:text-slate-800 transition-all",
-                                        category === name && "bg-slate-100 text-black hover:bg-slate-100")}
+                                        category === name && "bg-slate-100 text-inherit hover:bg-slate-100")}
                                 >
                                     {label}
                                 </h6>

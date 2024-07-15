@@ -19,8 +19,8 @@ const BlogCard = ({
     return ( 
         <motion.div
             key={id}
-            onClick={() => router.push(`/blogs/${id}`)}
-            className="flex flex-col overflow-hidden rounded-xl p-2 shadow border cursor-pointer hover:scale-105 transition-all h-[350px]"
+            onClick={() => router.push(`/blogs/${id}`, { scroll: true })}
+            className="flex flex-col overflow-hidden rounded-xl p-2 border cursor-pointer hover:scale-105 transition-all h-[350px] shadow-xl"
         >
             <motion.div className="border-b pb-2">
                 <motion.img
