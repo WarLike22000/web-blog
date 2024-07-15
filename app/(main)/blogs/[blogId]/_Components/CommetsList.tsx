@@ -13,6 +13,7 @@ import { useFormStatus } from "react-dom";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import CommentBox from "./CommentBox";
+import { useSession } from "next-auth/react";
 
 const CommentsList = ({
     comments
@@ -21,9 +22,18 @@ const CommentsList = ({
     const [open, setOpen] = useState(false);
     const { blogId } = useParams();
     const router = useRouter();
+    const session = useSession();
     
     const [state, action] = useFormState(createComment, { blogId });
 
+    const handleOpen = () => {
+        if(!session.data) {
+            toast("please first sign in");
+            return router.push("/login");
+        };
+        setOpen(true);
+    };
+    
     useEffect(() => {
         if(state.success) {
             toast.success("Comment created");
@@ -38,7 +48,7 @@ const CommentsList = ({
                 <h5 className="text-xl font-semibold text-left">
                     Comments
                 </h5>
-                <Button onClick={() => setOpen(true)}>
+                <Button onClick={handleOpen}>
                     New Comment
                 </Button>
                 <Modal open={open} setOpen={setOpen}>

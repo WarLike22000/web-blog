@@ -38,13 +38,13 @@ const CommentBox = ({
     };
     
     return ( 
-        <div className="w-full p-2 flex gap-2 border rounded-xl bg-gray-200">
+        <div className="w-full p-2 flex gap-3 border rounded-xl bg-gray-200">
             <Image
                 src={user.image! ?? "/assets/placeholder.jpg"}
                 alt={user.name}
                 width={50}
                 height={50}
-                className="object-fill rounded-full"
+                className="object-contain rounded-full"
             />
             <div className="flex flex-col gap-y-4 w-full">
                 <div className="flex items-center justify-between w-full">
