@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "./libs/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { getCurrentUser } from "./actions/getCurrentUser";
 
 export const {
     handlers,
@@ -53,4 +54,18 @@ export const {
     pages: {
         signIn: `${process.env.NEXT_PUBLIC_URL}/login`
     },
+    callbacks: {
+        session: async ({ session, token }) => {
+            if(session.user) {
+                session.user.id = `${token.sub}`
+            }
+            return session;
+        },
+        jwt: async ({ user, token }) => {
+            if (user) {
+              token.uid = user.id;
+            }
+            return token;
+        },
+    }
 });

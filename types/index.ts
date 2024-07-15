@@ -70,3 +70,17 @@ export interface EmptyStateProps {
     label: string;
     icon: LucideIcon;
 };
+
+export interface Comment {
+    id: number;
+    description: string;
+    userId: number;
+    blogId: number;
+    user: IUser;
+    createdAt: Date;
+    updatedAt: Date;
+};
+
+export interface CommentsListProps {
+    comments: Comment[] | undefined;
+};

@@ -5,7 +5,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Textarea from "@/components/Textarea";
 import { UploadDropzone } from "@/utils/uploadthing";
-import { ImageUp, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -28,7 +28,7 @@ const Create = () => {
             toast.error(response?.message!);
         }
     }, [response]);
-    
+
     return ( 
         <form action={action} className="space-y-8 w-full">
             <div className="flex flex-col gap-2">

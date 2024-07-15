@@ -7,7 +7,7 @@ const Textarea = ({
     id,
     name,
     required,
-    rows
+    rows,
 }: TextareaProps) => {
     return ( 
         <textarea

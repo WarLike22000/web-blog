@@ -15,12 +15,13 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
+  id       Int       @id @default(autoincrement())
   name     String
-  email    String  @unique
+  email    String    @unique
   password String
   image    String?
   Blog     Blog[]
+  Commets  Comment[]
 }
 
 model Blog {
@@ -34,8 +35,24 @@ model Blog {
   authorId    Int
   published   Boolean @default(false)
 
+  Comments Comment[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@fulltext([title])
+}
+
+model Comment {
+  id          Int    @id @default(autoincrement())
+  description String
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  blog   Blog @relation(fields: [blogId], references: [id])
+  blogId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

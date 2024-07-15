@@ -1,15 +1,18 @@
 import { getBlog } from "@/actions/blog";
 import Social from "@/components/Social";
 import Image from "next/image";
+import CommentsList from "./_Components/CommetsList";
+import { getComments } from "@/actions/comment";
 
 const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => {
 
     const data = await getBlog(Number(blogId));
+    const comments = await getComments(Number(blogId));
 
     return ( 
         <>
             <div className="bg-gray-800 w-full h-[250px] sm:h-[500px]" />
-            <div className="flex flex-col gap-4 items-center text-center px-5 md:px-12 lg:px-28 mt-[-250px] sm:mt-[-550px] py-20">
+            <div className="flex flex-col  gap-4 items-center text-center px-5 md:px-12 lg:px-28 mt-[-250px] sm:mt-[-550px] py-20">
                 <section className="flex flex-col items-center gap-2">
                     <h3 className="text-3xl md:text-5xl text-white text-center">
                         {data?.title}
@@ -45,16 +48,24 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                     </p>
                 </section>
 
-                <section className="text-gray-800 text-lg text-justify">
-                    {data?.description}
-                </section>
-                
-                <section className="mr-auto pt-16 flex flex-col gap-2">
-                    <h6 className="text-lg font-semibold">
-                        Share this article on social media
-                    </h6>
-                    <Social />
-                </section>
+                <div className="max-w-3xl space-y-20">
+                    <section className="text-gray-800 text-lg text-justify">
+                        {data?.description}
+                    </section>
+                    
+                    <section className="flex flex-col gap-2 w-full items-start">
+                        <h6 className="text-xl font-semibold text-left">
+                            Share this article on social media
+                        </h6>
+                        <div className="w-fit">
+                            <Social />
+                        </div>
+                    </section>
+
+                    <section className="">
+                        <CommentsList comments={comments} />
+                    </section>
+                </div>
             </div>
         </>
      );

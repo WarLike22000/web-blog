@@ -15,12 +15,6 @@ const blogSchema = z.object({
 
 export const getBlogs = async (): Promise<BlogCardProps[] | undefined> => {
     try {
-        const user = await getCurrentUser();
-
-        if(!user) {
-            throw new Error("user Unauthorized");
-        };
-
         const blogs = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/blog`);
         return blogs.data;
     } catch (error) {
