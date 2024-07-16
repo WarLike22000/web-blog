@@ -8,9 +8,13 @@ const Textarea = ({
     name,
     required,
     rows,
+    onChange,
+    value
 }: TextareaProps) => {
     return ( 
         <textarea
+            value={value}
+            onChange={onChange}
             rows={rows}
             required={required}
             name={name}

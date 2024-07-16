@@ -56,6 +56,8 @@ export interface TextareaProps {
     name?: string;
     required?: boolean;
     rows?: number;
+    onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+    value?: string;
 };
 
 export interface IUser {

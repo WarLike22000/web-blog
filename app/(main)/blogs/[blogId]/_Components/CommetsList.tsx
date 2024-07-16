@@ -35,7 +35,7 @@ const CommentsList = ({
     };
     
     useEffect(() => {
-        if(state.success) {
+        if(state?.success) {
             toast.success("Comment created");
             setOpen(false);
             router.refresh();

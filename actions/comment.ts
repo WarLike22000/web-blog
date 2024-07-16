@@ -3,7 +3,7 @@
 import prisma from "@/libs/db";
 import { getCurrentUser } from "./getCurrentUser";
 
-export const createComment = async ({ blogId }: { blogId: string }, formData: FormData): Promise<any> => {
+export const createComment = async (state: { blogId: string }, formData: FormData): Promise<any> => {
     try {
 
         const description = formData.get("description") as string;
@@ -14,17 +14,22 @@ export const createComment = async ({ blogId }: { blogId: string }, formData: Fo
             throw new Error("User Unauthorized");
         };
 
+        if(!state?.blogId) {
+            throw new Error("BlogId is require");
+        }
+        
         const comment = await prisma.comment.create({
             data: {
                 description,
                 userId: currentUser.id,
-                blogId: Number(blogId)
+                blogId: Number(state.blogId)
             },
         });
 
         return {
             success: true,
-            comment
+            comment,
+            id: state.blogId
         };
     } catch (error) {
         console.log(error);
@@ -69,6 +74,40 @@ export const deleteComment = async (id: number, userId: number) => {
         });
 
         return comment;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const updateComment = async (state: any, formData: FormData): Promise<any> => {
+    try {
+        const currentUser = await getCurrentUser();
+        if(!currentUser) {
+            throw new Error("User Unauthorized");
+        };
+
+        if(currentUser.id !== state?.userId) {
+            throw new Error("you are not allowed");
+        };
+
+        const description = formData.get("description") as string;
+        if(!description) {
+            throw new Error("description is require");
+        }
+
+        const comment = await prisma.comment.update({
+            where: {
+                id: state.commentId
+            },
+            data: {
+                description
+            }
+        });
+
+        return {
+            success: true,
+            comment,
+        };
     } catch (error) {
         console.log(error);
     }
