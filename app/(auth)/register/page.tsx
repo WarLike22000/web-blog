@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 const Register = () => {
     const [response, formAction] = useFormState(register, null);
@@ -30,14 +31,23 @@ const Register = () => {
     
     return ( 
         <form action={formAction} className="w-full max-w-sm shadow-md border rounded-xl p-4 flex flex-col gap-5">
-            <section>
+            <Link href="/" className="w-fit mx-auto py-5">
                 <Image
                     src="/assets/logo.svg"
                     alt="logo"
                     width={200}
                     height={200}
+                    className="cursor-pointer"
                 />
-            </section>
+            </Link>
+            <div className="text-gray-600 text-center space-y-3">
+                <h3 className="text-3xl">
+                    Register
+                </h3>
+                <p>
+                    Please register to login
+                </p>
+            </div>
             <section className="flex flex-col gap-2">
                 <label htmlFor="name" className="text-gray-700">Name</label>
                 <Input type="text" name="name" placeholder="enter your name" id="name" />
@@ -52,6 +62,10 @@ const Register = () => {
             </section>
 
             <Submit />
+
+            <section className="text-sm flex items-center gap-1 sm:gap-3">
+            Already Have Account? <Link href="/login" className="text-blue-500 hover:underline underline-offset-2 transition">Sign in</Link>
+            </section>
         </form>
      );
 };

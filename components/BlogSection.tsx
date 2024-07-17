@@ -45,7 +45,7 @@ const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
     return ( 
         <motion.div
             variants={variantCards}
-            className="space-y-6 h-fit py-10"
+            className="space-y-6 h-fit py-10 px-5 md:px-12 lg:px-28"
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.2 }}

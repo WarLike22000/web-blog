@@ -1,12 +1,13 @@
 "use server";
 
 import { auth, signIn } from "@/auth";
-import { IResponse, IUser } from "@/types";
+import { IResponse } from "@/types";
 import axios from "axios";
 import { redirect } from "next/navigation";
 import * as z from "zod";
 import { getCurrentUser } from "./getCurrentUser";
 import prisma from "@/libs/db";
+import { AuthError } from "next-auth";
 
 const registerSchema = z.object({
     name: z.string().min(1, { message: "Field is require" }),
@@ -91,14 +92,36 @@ export const login = async (state: any, formData: FormData): Promise<IResponse |
         await signIn("credentials", {
             email,
             password,
-            redirect: true,
-            callbackUrl: "/",
-        })
+        }).then((res) => console.log(res))
 
+        redirect("/");
     } catch (error) {
-        console.log(error);
+		if (error instanceof Error) {
+			const { message, cause } = error as AuthError;
+            console.log({cause: cause?.err?.message});
+            if(message === "NEXT_REDIRECT") {
+                return {
+                    success: true,
+                    error: false,
+                    message: "welcome back"
+                };
+            } else if(cause?.err?.message === "Invalid Credentials") {
+                    return {
+                        success: false,
+                        error: true,
+                        message: cause.err.message
+                    }
+            } else {
+                return {
+                    success: false,
+                    error: true,
+                    message: "Something went wrong"
+                };
+            }
+		}
+
+		throw error;
     }
-    redirect("/");
 };
 
 export const updateUser = async (data: object) => {

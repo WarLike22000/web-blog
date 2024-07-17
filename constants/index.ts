@@ -103,3 +103,18 @@ export const sidebar = [
         Icon: Newspaper 
     },
 ];
+
+export const navbarRoutes = [
+    {
+        label: "Home",
+        href: "/",
+    },
+    {
+        label: "All Blogs",
+        href: "/blogs",
+    },
+    {
+        label: "Abute Us",
+        href: "/aboute-us",
+    },
+];
