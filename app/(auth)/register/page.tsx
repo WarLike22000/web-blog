@@ -25,7 +25,7 @@ const Register = () => {
     };
 
     if(session.data) {
-        router.push("/");
+        return router.push("/");
     }
     
     

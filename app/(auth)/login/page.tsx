@@ -31,16 +31,9 @@ const Login = () => {
         router.refresh();
     }, [response?.success]);
 
-    useEffect(() => {
-        if(session.data) {
-            router.push("/");
-        }
-
-        return () => {
-            router.refresh();
-        }
-    }, [session]);
-    
+    if(session.data) {
+        return router.push("/");
+    }
     
     return ( 
         <form action={formAction} className="w-full max-w-sm shadow-md border rounded-xl p-4 flex flex-col gap-5">
