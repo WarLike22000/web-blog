@@ -1,5 +1,5 @@
 import { BlogCardProps } from "@/types";
-import { FilePlus2, Newspaper, UserCog } from "lucide-react";
+import { FilePlus2, Home, Newspaper, UserCog, UserRoundSearch } from "lucide-react";
 
 export const buttonCategory = [
     {
@@ -108,13 +108,16 @@ export const navbarRoutes = [
     {
         label: "Home",
         href: "/",
+        Icon: Home
     },
     {
         label: "All Blogs",
         href: "/blogs",
+        Icon: Newspaper
     },
     {
         label: "Abute Us",
         href: "/aboute-us",
+        Icon: UserRoundSearch
     },
 ];

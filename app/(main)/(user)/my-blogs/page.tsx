@@ -63,7 +63,7 @@ const MyBlogs = async () => {
                             </td>
                             
                             <td className="p-2 mx-auto">
-                                <DeleteBlog id={blog.id} />
+                                <DeleteBlog id={blog.id} fileKey={blog.fileKey} />
                             </td>
                         </tr>
                     ))

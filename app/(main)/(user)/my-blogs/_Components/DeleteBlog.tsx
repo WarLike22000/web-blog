@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
 
-const DeleteBlog = ({ id } : {id: number}) => {
+const DeleteBlog = ({ id, fileKey } : {id: number, fileKey: string}) => {
 
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
@@ -14,7 +14,7 @@ const DeleteBlog = ({ id } : {id: number}) => {
     const deleteHandler = async () => {
         try {
             startTransition(async () => {
-                await deleteBlog(id)
+                await deleteBlog(id, fileKey)
                     .then(() => {
                         toast.success("blog deleted");
                         router.refresh();

@@ -70,7 +70,7 @@ const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
                                         setOpen(false);
                                     }}
                                     className={clsx("text-base text-center text-white py-1 px-4 cursor-pointer hover:bg-slate-100 hover:text-slate-800 transition-all",
-                                        category === name && "bg-slate-100 text-inherit hover:bg-slate-100")}
+                                        category === name && "bg-slate-100 text-black hover:bg-slate-100")}
                                 >
                                     {label}
                                 </h6>

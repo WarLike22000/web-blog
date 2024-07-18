@@ -58,9 +58,9 @@ const Hero = () => {
                 <p className="text-sm sm:text-base text-center text-white px-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <div className="flex items-center gap-2 w-fit mx-auto">
+                <div className="flex items-center gap-3 w-fit mx-auto">
                     <Link href={session ? "/create-blog" : "/login"}>
-                        <Button className="bg-white text-black/85 py-2">
+                        <Button className="bg-opacity-40 hover:bg-opacity-40 outline outline-1 outline-offset-2 hover:bg-none outline-blue-500">
                             Get started
                         </Button>
                     </Link>

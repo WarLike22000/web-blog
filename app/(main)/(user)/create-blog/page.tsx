@@ -16,6 +16,7 @@ const Create = () => {
 
     const [response, action] = useFormState(createBlog, null);
     const [image, setImage] = useState("");
+    const [fileKey, setFileKey] = useState("");
     const router = useRouter();
 
     useEffect(() => {
@@ -23,6 +24,7 @@ const Create = () => {
             toast.success(
                 response.message
             );
+            router.refresh();
             router.push("/my-blogs");
         } else if(response?.error) {
             toast.error(response?.message!);
@@ -50,6 +52,7 @@ const Create = () => {
                                 endpoint="imageUploader"
                                 onClientUploadComplete={async (res) => {
                                     setImage(res[0].url);
+                                    setFileKey(res[0].key);
                                     toast.success("upload successfully");
                                 }}
                                 onUploadError={async (error: Error) => {
@@ -60,6 +63,7 @@ const Create = () => {
                     }
                 </label>
                 <input name="image" value={image} hidden id="image" required />
+                <input name="fileKey" value={fileKey} hidden id="fileKey" required />
             </div>
             <div className="flex flex-col gap-2">
                 <label className="text-xl" htmlFor="title">

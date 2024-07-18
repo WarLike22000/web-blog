@@ -7,10 +7,12 @@ import { useRouter } from "next/navigation";
 
 const textH2: Variants = {
     offscreen: {
-        opacity: 0
+        opacity: 0,
+        display: "none"
     },
     onscreen: {
         opacity: 1,
+        display: "block",
         transition: {
             type: "spring",
             bounce: 0.3,
@@ -21,11 +23,13 @@ const textH2: Variants = {
 const variantLeft: Variants = {
     offscreen: {
         x: -100,
-        opacity: 0
+        opacity: 0,
+        display: "none"
     },
     onscreen: {
         x: 0,
         opacity: 1,
+        display: "block",
         transition: {
             type: "spring",
             bounce: 0.3,
@@ -37,11 +41,13 @@ const variantLeft: Variants = {
 const variantRight: Variants = {
     offscreen: {
         x: 100,
-        opacity: 0
+        opacity: 0,
+        display: "none"
     },
     onscreen: {
         x: 0,
         opacity: 1,
+        display: "block",
         transition: {
             type: "spring",
             bounce: 0.3,

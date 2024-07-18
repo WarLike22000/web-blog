@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { auth } from "@/auth";
 import UserButton from "./UserButton";
 import NavbarRoutes from "./NavbarRoutes";
+import Sidebar from "./Sidebar";
 
 const Navbar = async () => {
     
@@ -22,18 +23,21 @@ const Navbar = async () => {
                     />
                 </Link>
                 <NavbarRoutes />
-                {
-                    session ? (
-                        <UserButton />
-                    ) : (
-                        <Link href="/register">
-                            <Button className="items-center gap-2 hidden sm:flex">
-                                Sign up
-                                <ArrowRight size={17} />
-                            </Button>
-                        </Link>
-                    )
-                }
+                <div className="flex items-center gap-4">
+                    {
+                        session ? (
+                            <UserButton />
+                        ) : (
+                            <Link href="/register">
+                                <Button className="items-center gap-2 hidden sm:flex">
+                                    Sign up
+                                    <ArrowRight size={17} />
+                                </Button>
+                            </Link>
+                        )
+                    }
+                    <Sidebar />
+                </div>
             </div>
         </div>
      );

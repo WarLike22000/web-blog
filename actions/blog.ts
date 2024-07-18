@@ -5,6 +5,7 @@ import axios from "axios";
 import * as z from "zod";
 import { getCurrentUser } from "./getCurrentUser";
 import prisma from "@/libs/db";
+import { UTApi } from "uploadthing/server";
 
 const blogSchema = z.object({
     title: z.string().min(1, { message: "title is require" }),
@@ -28,6 +29,7 @@ export const createBlog = async (state: any, formData: FormData): Promise<IRespo
         const image = formData.get("image") as string;
         const description = formData.get("description") as string;
         const category = formData.get("category") as string;
+        const fileKey = formData.get("fileKey") as string;
         
 
         const user = await getCurrentUser();
@@ -56,6 +58,7 @@ export const createBlog = async (state: any, formData: FormData): Promise<IRespo
                 image,
                 authorId: user.id,
                 category,
+                fileKey,
             }
         });
 
@@ -148,11 +151,17 @@ export const getBlogsBySearch = async (search: string) => {
     }
 };
 
-export const deleteBlog = async (id: number) => {
+export const deleteBlog = async (id: number, fileKey: string) => {
     try {
         const currentUser = await getCurrentUser();
         if(!currentUser) {
             throw new Error("User Unauthorized");
+        };
+
+        const utapi = new UTApi();
+        
+        if(!fileKey) {
+            throw new Error("fileKey is require");
         };
 
         const deleteBlog = await prisma.blog.delete({
@@ -160,6 +169,8 @@ export const deleteBlog = async (id: number) => {
                 id
             }
         });
+
+        await utapi.deleteFiles(fileKey);
 
         return deleteBlog;
     } catch (error) {
