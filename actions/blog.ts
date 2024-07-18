@@ -1,7 +1,6 @@
 "use server";
 
 import { BlogCardProps, IResponse } from "@/types";
-import axios from "axios";
 import * as z from "zod";
 import { getCurrentUser } from "./getCurrentUser";
 import prisma from "@/libs/db";
@@ -16,8 +15,8 @@ const blogSchema = z.object({
 
 export const getBlogs = async (): Promise<BlogCardProps[] | undefined> => {
     try {
-        const blogs = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/blog`);
-        return blogs.data;
+        const blogs = await prisma.blog.findMany();
+        return blogs;
     } catch (error) {
         console.log(error);
     }
