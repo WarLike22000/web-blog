@@ -63,6 +63,7 @@ const CommentBox = ({
                     src={user.image! ?? "/assets/placeholder.jpg"}
                     alt={user.name}
                     fill
+                    className="absolute size-full object-cover"
                 />
             </div>
             <div className="flex flex-col gap-y-2 w-full">

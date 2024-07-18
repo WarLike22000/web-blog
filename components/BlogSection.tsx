@@ -3,7 +3,7 @@
 import BlogCard from "./BlogCard";
 
 import { AnimatePresence, motion, Variants } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { buttonCategory } from "@/constants";
 import Button from "./Button";
@@ -62,7 +62,7 @@ const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
                         Filter <ListFilter size={18} />
                     </Button>
                     <Menu open={open} setOpen={setOpen}>
-                        <div className="flex flex-col gap-1 bg-gray-800 rounded-xl overflow-hidden">
+                        <div className="flex flex-col gap-1 bg-gray-800 rounded-md overflow-hidden">
                             {buttonCategory.map(({ label, name }) => (
                                 <h6
                                     onClick={() => {
@@ -70,7 +70,7 @@ const BlogSection = ({ blogs }: { blogs: BlogCardProps[] | undefined }) => {
                                         setOpen(false);
                                     }}
                                     className={clsx("text-base text-center text-white py-1 px-4 cursor-pointer hover:bg-slate-100 hover:text-slate-800 transition-all",
-                                        category === name && "bg-slate-100 text-black hover:bg-slate-100")}
+                                        category === name && "bg-slate-100 text-black bg-opacity-30 hover:bg-slate-100")}
                                 >
                                     {label}
                                 </h6>

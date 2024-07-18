@@ -9,7 +9,7 @@ const Footer = () => {
             </h1>
             <div className="flex items-center gap-4 flex-wrap">
                 <Link className="text-white hover:text-slate-300 transition" href="/">Home</Link>
-                <Link className="text-white hover:text-slate-300 transition" href="#">About us</Link>
+                <Link className="text-white hover:text-slate-300 transition" href="/about-us">About us</Link>
                 <Link className="text-white hover:text-slate-300 transition" href="#">Contact us</Link>
             </div>
             <Social />

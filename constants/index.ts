@@ -117,7 +117,7 @@ export const navbarRoutes = [
     },
     {
         label: "Abute Us",
-        href: "/aboute-us",
+        href: "/about-us",
         Icon: UserRoundSearch
     },
 ];

@@ -32,13 +32,15 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
 
                 <section className="flex justify-between gap-4 items-center w-full max-w-xl">
                     <div className="flex items-center gap-2">
-                        <Image
-                            src={data?.author.image ? data?.author.image : "/assets/placeholder.jpg"}
-                            alt={data?.author.name as string}
-                            width={50}
-                            height={50}
-                            className="rounded-full bg-gray-400"
-                        />
+                        <div className="relative h-[40px] w-[50px]">
+                            <Image
+                                src={data?.author.image ? data?.author.image : "/assets/placeholder.jpg"}
+                                alt={data?.author.name as string}
+                                width={50}
+                                height={50}
+                                className="rounded-full bg-gray-400 absolute size-full"
+                            />
+                        </div>
                         <h4 className="text-lg text-gray-600">
                             {data?.author.name}
                         </h4>

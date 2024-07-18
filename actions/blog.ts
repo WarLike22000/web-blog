@@ -15,7 +15,11 @@ const blogSchema = z.object({
 
 export const getBlogs = async (): Promise<BlogCardProps[] | undefined> => {
     try {
-        const blogs = await prisma.blog.findMany();
+        const blogs = await prisma.blog.findMany({
+            include: {
+                author: true
+            }
+        });
         return blogs;
     } catch (error) {
         console.log(error);

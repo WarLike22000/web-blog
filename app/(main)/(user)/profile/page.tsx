@@ -12,13 +12,13 @@ const Profile = async () => {
         <div className="flex flex-col items-center w-full gap-10">
             <div className="flex sm:flex-row flex-col sm:items-center sm:justify-between w-full gap-4">
                 <div className="flex items-end gap-2">
-                    <section className="relative">
+                    <section className="relative sm:w-[200px] sm:h-[200px] w-[100px] h-[100px]">
                         <Image
                             src={`${currentUser?.image ?? "/assets/placeholder.jpg"}`}
                             alt={`${currentUser?.name}`}
                             width={200}
                             height={200}
-                            className="object-cover rounded-full"
+                            className="object-cover rounded-full absolute size-full"
                         />
                         <UploadProfile />
                     </section>

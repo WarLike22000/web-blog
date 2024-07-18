@@ -22,22 +22,26 @@ const BlogCard = ({
             onClick={() => router.push(`/blogs/${id}`, { scroll: true })}
             className="flex flex-col overflow-hidden rounded-xl p-2 border cursor-pointer hover:scale-105 transition-all h-[350px] shadow-xl"
         >
-            <motion.div className="border-b pb-2">
-                <motion.img
+            <motion.div className="border-b pb-2 relative w-full h-[4000px]">
+                <Image
                     src={image}
                     alt="blog"
-                    className="object-cover w-full h-[150px] rounded-lg"
+                    fill
+                    className="object-cover absolute size-full rounded-lg"
                 />
             </motion.div>
             <div className="flex items-center gap-2 text-sm pt-2">
-                <Image
-                    src={author?.image ? author?.image : "/assets/placeholder.jpg"}
-                    alt="author"
-                    width={50}
-                    height={50}
-                    className="rounded-full"
-                />
-                {author?.name}
+                <div className="relative h-[40px] w-[40px]">
+                    <Image
+                        src={author?.image ?? "/assets/placeholder.jpg"}
+                        alt="author"
+                        fill
+                        className="rounded-full absolute size-full object-cover"
+                    />
+                </div>
+                <p>
+                    {author?.name}
+                </p>
             </div>
             <div className="text-sm text-slate-400">
                 {category}
