@@ -1,0 +1,29 @@
+{
+    "name": "nextblog",
+    "short_name": "nextblog",
+    "description": "best pwa blog website",
+    "icons": [
+      {
+        "src": "/icons/blog_128x128.png",
+        "sizes": "128x128",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/icons/blog_256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/blog_512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait"
+  }

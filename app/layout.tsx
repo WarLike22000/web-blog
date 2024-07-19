@@ -12,6 +12,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Blog App",
   description: "Generate Blog App by Next JS",
+  manifest: "/manifest.json"
 };
 
 export default function RootLayout({
