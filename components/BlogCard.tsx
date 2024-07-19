@@ -22,14 +22,14 @@ const BlogCard = ({
             onClick={() => router.push(`/blogs/${id}`, { scroll: true })}
             className="flex flex-col overflow-hidden rounded-xl p-2 border cursor-pointer hover:scale-105 transition-all h-[350px] shadow-xl"
         >
-            <motion.div className="border-b pb-2 relative w-full h-[4000px]">
+            <div className="relative w-full h-[4000px] max-h-[150px]">
                 <Image
                     src={image}
                     alt="blog"
                     fill
                     className="object-cover absolute size-full rounded-lg"
                 />
-            </motion.div>
+            </div>
             <div className="flex items-center gap-2 text-sm pt-2">
                 <div className="relative h-[40px] w-[40px]">
                     <Image

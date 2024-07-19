@@ -50,8 +50,8 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                     </p>
                 </section>
 
-                <div className="max-w-3xl space-y-20">
-                    <section className="text-gray-800 text-lg text-justify">
+                <div className="max-w-3xl space-y-20 w-full">
+                    <section className="text-gray-800 text-lg text-justify border p-3 rounded-md">
                         {data?.description}
                     </section>
                     
@@ -64,7 +64,7 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                         </div>
                     </section>
 
-                    <section className="">
+                    <section>
                         <CommentsList comments={comments} />
                     </section>
                 </div>

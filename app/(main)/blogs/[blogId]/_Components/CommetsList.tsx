@@ -63,7 +63,7 @@ const CommentsList = ({
                 </Modal>
             </section>
 
-            <section className="border mt-5 rounded-lg bg-white">
+            <section className="border border-dashed mt-5 rounded-lg bg-white">
                 {
                     comments?.length === 0 ? (
                         <div className="w-full h-full p-5">
