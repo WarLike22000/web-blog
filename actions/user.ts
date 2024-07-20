@@ -2,7 +2,7 @@
 
 import { auth, signIn } from "@/auth";
 import { IResponse } from "@/types";
-import axios from "axios";
+import bcrypt from "bcryptjs"
 import { redirect } from "next/navigation";
 import * as z from "zod";
 import { getCurrentUser } from "./getCurrentUser";
@@ -46,9 +46,27 @@ export const register = async (state: any, formData: FormData): Promise<IRespons
             };
         };
         
-        const user = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/register`, formData);
+        const existUser = await prisma.user.findFirst({
+            where: {
+                email
+            }
+        });
+
+        if(existUser) {
+            throw new Error("user has been already exist");
+        }
         
-        if(user.data.success) {
+        const hashedPassword = await bcrypt.hash(password, 12);
+
+        const user = await prisma.user.create({
+            data: {
+                name,
+                email,
+                password: hashedPassword
+            }
+        });
+        
+        if(user.id) {
             await signIn("credentials", {
                 email,
                 password,
@@ -56,7 +74,7 @@ export const register = async (state: any, formData: FormData): Promise<IRespons
             });
             return {
                 message: "User created",
-                user: user.data,
+                user,
                 success: true,
                 error: false
             }

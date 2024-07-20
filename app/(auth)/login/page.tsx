@@ -21,7 +21,7 @@ const Login = () => {
     useEffect(() => {
         if(response?.success && !response.error) {
             toast.success(response?.message!);
-            router.push("/");
+            location.reload();
         } else if(response?.error && !response.success) {
             toast.error(response?.message!);
         };
