@@ -13,7 +13,7 @@ const Navbar = async () => {
 
     return ( 
         <div className="py-5 px-5 md:px-12 lg:px-28 relative z-20 border-b">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center gap-3">
                 <Link href="/">
                     <Image
                         src="/assets/logo.svg"

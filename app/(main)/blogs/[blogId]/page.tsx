@@ -12,7 +12,7 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
     return ( 
         <>
             <div className="bg-gray-800 w-full h-[250px] sm:h-[500px]" />
-            <div className="flex flex-col  gap-4 items-center text-center px-5 md:px-12 lg:px-28 mt-[-250px] sm:mt-[-550px] py-20">
+            <div className="flex flex-col  gap-4 items-center text-center px-5 md:px-12 lg:px-28 mt-[-280px] sm:mt-[-550px] py-20">
                 <section className="flex flex-col items-center gap-2">
                     <h3 className="text-3xl md:text-5xl text-white text-center">
                         {data?.title}
@@ -22,13 +22,14 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                     </h5>
                 </section>
                 
-                <Image
-                    src={data?.image as string}
-                    alt="blog"
-                    width={700}
-                    height={700}
-                    className="object-cover rounded-md bg-gray-400"
-                />
+                <div className="relative w-full max-w-5xl min-h-[200px] sm:min-h-[400px]">
+                    <Image
+                        src={data?.image as string}
+                        alt="blog"
+                        fill
+                        className="object-cover rounded-md absolute size-full"
+                    />
+                </div>
 
                 <section className="flex justify-between gap-4 items-center w-full max-w-xl">
                     <div className="flex items-center gap-2">

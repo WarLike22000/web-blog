@@ -73,7 +73,7 @@ const Sidebar = () => {
                         </Link>
                     ))
                 }
-                {session.status === "unauthenticated" ? (
+                {!session.data ? (
                     <Link href="/register" className="w-full mt-auto">
                         <Button className="items-center gap-2 flex w-full justify-center py-3 text-lg">
                             Sign up

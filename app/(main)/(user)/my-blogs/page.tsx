@@ -36,17 +36,21 @@ const MyBlogs = async () => {
                     blogsUser?.map((blog) => (
                         <tr key={blog.id} className="border-t text-center">
                             <td className="border-r p-2">
-                                <Image
-                                    src={`${blog.image}`}
-                                    alt="blog"
-                                    width={100}
-                                    height={100}
-                                    className="object-cover rounded-lg mx-auto"
-                                />
+                                <Link href={`/blogs/${blog.id}`}>
+                                    <Image
+                                        src={`${blog.image}`}
+                                        alt="blog"
+                                        width={100}
+                                        height={100}
+                                        className="object-cover rounded-lg mx-auto"
+                                    />
+                                </Link>
                             </td>
 
                             <td className="truncate max-w-32 border-r p-2">
-                                {blog.title}
+                                <Link href={`/blogs/${blog.id}`}>
+                                    {blog.title}
+                                </Link>
                             </td>
                             
 

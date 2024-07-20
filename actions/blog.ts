@@ -18,6 +18,9 @@ export const getBlogs = async (): Promise<BlogCardProps[] | undefined> => {
         const blogs = await prisma.blog.findMany({
             include: {
                 author: true
+            },
+            orderBy: {
+                createdAt: "desc"
             }
         });
         return blogs;
