@@ -1,5 +1,4 @@
 import { getCurrentUser } from "@/actions/getCurrentUser";
-import Button from "@/components/Button";
 import SignOutButton from "./_Components/SignOutButton";
 import Image from "next/image";
 import UploadProfile from "./_Components/UploadProfile";

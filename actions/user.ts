@@ -162,3 +162,22 @@ export const updateUser = async (data: object) => {
         console.log(error);
     }
 };
+
+
+// only for test
+export const deleteManyUsers = async () => {
+    try {
+        const users = await prisma.user.deleteMany({
+            where: {
+                image: {
+                    equals: null
+                }
+            }
+        });
+
+        return users;
+    } catch (error) {
+        console.log(error);
+    }
+    
+};
