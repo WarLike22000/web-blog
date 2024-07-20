@@ -35,27 +35,27 @@ const ContactUs = () => {
             />
 
             <div className="flex items-center justify-center w-full h-full z-10 p-5">
-                <div className="size-full rounded-lg bg-opacity-65 bg-gray-800 max-w-5xl backdrop-blur-sm p-3 max-h-[700px] relative">
+                <div className="size-full rounded-lg bg-opacity-65 bg-gray-800 max-w-5xl backdrop-blur-sm p-3 h-fit relative">
                     <Link href="/">
                         <div className="hover:bg-white hover:bg-opacity-10 p-2 rounded-full transition absolute top-2 left-2 text-white">
                             <Home />
                         </div>
                     </Link>
-                    <section className="flex flex-col md:flex-row items-center justify-center w-full h-full gap-10">
+                    <section className="flex flex-col md:flex-row items-center justify-center w-full h-full gap-5">
 
-                        <div className="flex flex-col items-center text-center text-white max-w-md gap-5">
+                        <div className="flex flex-col items-center text-center text-white max-w-md gap-5 sm:gap-10">
                             <h3 className="text-3xl text-white font-bold">
                                 Contact
                             </h3>
                             <p className="font-semibold">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                             </p>
                             <div>
                                 <h6 className="text-xl">
                                     Address
                                 </h6>
                                 <p className="text-white text-sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
                                 </p>
                             </div>
                             <div>
