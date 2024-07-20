@@ -13,11 +13,11 @@ const textH2: Variants = {
     onscreen: {
         opacity: 1,
         display: "block",
-        transition: {
-            type: "spring",
-            bounce: 0.3,
-            duration: 0.5
-        },
+        // transition: {
+        //     type: "spring",
+        //     bounce: 0.3,
+        //     duration: 0.5
+        // },
     },
 };
 const variantLeft: Variants = {
@@ -30,11 +30,11 @@ const variantLeft: Variants = {
         x: 0,
         opacity: 1,
         display: "block",
-        transition: {
-            type: "spring",
-            bounce: 0.3,
-            duration: 0.5
-        },
+        // transition: {
+        //     type: "spring",
+        //     bounce: 0.3,
+        //     duration: 0.5
+        // },
     },
 };
 
@@ -48,11 +48,11 @@ const variantRight: Variants = {
         x: 0,
         opacity: 1,
         display: "block",
-        transition: {
-            type: "spring",
-            bounce: 0.3,
-            duration: 0.5
-        },
+        // transition: {
+        //     type: "spring",
+        //     bounce: 0.3,
+        //     duration: 0.5
+        // },
     },
 };
 
@@ -65,7 +65,7 @@ const CategorySection = () => {
         className="space-y-6 px-5 md:px-12 lg:px-28"
         initial="offscreen"
         whileInView="onscreen"
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, amount: 0.5 }}
     >
         <motion.h2 variants={textH2} className="text-gray-600 text-xl sm:text-3xl">
             Category
