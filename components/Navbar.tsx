@@ -12,7 +12,7 @@ const Navbar = async () => {
     const session = await auth();
 
     return ( 
-        <div className="py-5 px-5 md:px-12 lg:px-28 relative z-20 border-b">
+        <div className="py-5 px-5 md:px-12 lg:px-28 relative z-20 border-b bg-white">
             <div className="flex justify-between items-center gap-3">
                 <Link href="/">
                     <Image

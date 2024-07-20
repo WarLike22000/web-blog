@@ -41,7 +41,7 @@ export interface ModalProps {
 
 export interface InputProps {
     className?: string;
-    type: "text" | "email" | "password";
+    type: "text" | "email" | "password" | "number";
     placeholder?: string;
     id?: string;
     name?: string;

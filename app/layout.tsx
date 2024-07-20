@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.className} flex flex-col h-screen max-w-[1500px] mx-auto`}>
+      <body className={`${outfit.className} flex flex-col h-screen max-w-[2000px] mx-auto`}>
         <SessionProvider>
             {children}
             <Toaster />

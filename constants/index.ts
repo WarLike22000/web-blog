@@ -1,5 +1,5 @@
 import { BlogCardProps } from "@/types";
-import { FilePlus2, Home, Newspaper, UserCog, UserRoundSearch } from "lucide-react";
+import { FilePlus2, Home, MessageCircle, Newspaper, SquareUser, UserCog, UserRoundSearch } from "lucide-react";
 
 export const buttonCategory = [
     {
@@ -102,6 +102,11 @@ export const sidebar = [
         href: "/my-blogs",
         Icon: Newspaper 
     },
+    {
+        label: "Messages",
+        href: "/messages",
+        Icon: MessageCircle 
+    },
 ];
 
 export const navbarRoutes = [
@@ -119,5 +124,10 @@ export const navbarRoutes = [
         label: "Abute Us",
         href: "/about-us",
         Icon: UserRoundSearch
+    },
+    {
+        label: "Contact Us",
+        href: "/contact-us",
+        Icon: SquareUser
     },
 ];

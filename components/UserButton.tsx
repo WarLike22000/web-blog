@@ -33,6 +33,11 @@ const UserButton = () => {
                                 My Blogs
                         </li>
                     </Link>
+                    <Link href="/messages" onClick={() => setOpen(false)}>
+                        <li className="bg-gray-600 hover:bg-gray-400 transition-colors p-2 w-full">
+                            Messages
+                        </li>
+                    </Link>
                     <li
                         className="text-white bg-red-600 transition-colors hover:bg-red-400 p-2"
                         onClick={() => signOut()}

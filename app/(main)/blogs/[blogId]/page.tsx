@@ -31,7 +31,7 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                     />
                 </div>
 
-                <section className="flex justify-between gap-4 items-center w-full max-w-xl">
+                <section className="flex justify-between gap-4 items-center w-full max-w-5xl">
                     <div className="flex items-center gap-2">
                         <div className="relative h-[40px] w-[50px]">
                             <Image
@@ -51,7 +51,7 @@ const Blog = async ({ params: { blogId } } : { params: { blogId: string } }) => 
                     </p>
                 </section>
 
-                <div className="max-w-3xl space-y-20 w-full">
+                <div className="max-w-5xl space-y-20 w-full">
                     <section className="text-gray-800 text-lg text-justify border p-3 rounded-md">
                         {data?.description}
                     </section>
