@@ -12,7 +12,7 @@ const ContactSchema = z.object({
     message: z.string().min(5),
 }); 
 
-export const createContact = async (state: any, formData: FormData): Promise<Partial<Contact> & { success: boolean, resMessage: string } | undefined> => {
+export const createContact = async (state: any, formData: FormData): Promise<Partial<Contact> & { success: boolean, resMessage: string, error: boolean } | undefined> => {
     try {
         const currentUser = await getCurrentUser();
 
@@ -36,6 +36,7 @@ export const createContact = async (state: any, formData: FormData): Promise<Par
             return {
                 resMessage: validateSchema.error.flatten().fieldErrors as string,
                 success: false,
+                error: true,
             };
         };
         
@@ -51,6 +52,7 @@ export const createContact = async (state: any, formData: FormData): Promise<Par
         
         return {
             success: true,
+            error: false,
             resMessage: "We will contact you soon",
             ...contact
         };
@@ -99,7 +101,7 @@ export const deleteMessage = async (id: number) => {
             }
         });
 
-        return deleteMessage;
+        return deletedMessage;
     } catch (error) {
         console.log(error);
     }

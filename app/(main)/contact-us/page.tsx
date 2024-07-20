@@ -16,11 +16,11 @@ const ContactUs = () => {
     const [response, action] = useFormState(createContact, null);
 
     useEffect(() => {
-        if(!response?.success) {
+        if(!response?.success && response?.error) {
             toast.error(response?.resMessage!, {duration: 4000});
         };
 
-        if(response?.success) {
+        if(response?.success && !response.error) {
             toast.success(response.resMessage!, { duration: 8000 });
         };
     }, [response]);

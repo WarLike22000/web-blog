@@ -32,9 +32,7 @@ const Messages = async () => {
                     messages?.map((message) => (
                         <tr key={message.id} className="border-t text-center">
                             <td className="truncate max-w-32 border-r p-2">
-                                <Link href={`/messages/${message.id}`}>
-                                    {message.message}
-                                </Link>
+                                {message.message}
                             </td>
                             
 
