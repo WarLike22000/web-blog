@@ -7,27 +7,32 @@ import { Contact } from "@prisma/client";
 
 const ContactSchema = z.object({
     name: z.string().min(1),
-    email: z.string().email({ message: "email must be valid" }),
-    phone: z.string().min(5),
-    message: z.string().min(5),
+    phone: z.string().min(1),
+    message: z.string().min(1),
 }); 
 
-export const createContact = async (state: any, formData: FormData): Promise<Partial<Contact> & { success: boolean, resMessage: string, error: boolean } | undefined> => {
+export const createContact = async (state: any, formData: FormData): Promise<Partial<Contact> & { success: boolean, resMessage: string, error: boolean, statusCode?: number } | undefined> => {
     try {
         const currentUser = await getCurrentUser();
 
         if(!currentUser) {
-            throw new Error("User Unauthorized");
+            throw new Error("unauthorized");
         };
 
         const name = formData.get("name") as string;
-        const email = formData.get("email") as string;
         const phone = formData.get("phone") as string;
         const message = formData.get("message") as string;
 
+        if(!name || !phone || !message) {
+            return {
+                error: true,
+                success: false,
+                resMessage: "Field is require",
+            };
+        };
+        
         const validateSchema = ContactSchema.safeParse({
             name,
-            email,
             phone,
             message
         });
@@ -37,13 +42,13 @@ export const createContact = async (state: any, formData: FormData): Promise<Par
                 resMessage: validateSchema.error.flatten().fieldErrors as string,
                 success: false,
                 error: true,
+                statusCode: 400,
             };
         };
         
         const contact = await prisma.contact.create({
             data: {
                 name,
-                email,
                 phone,
                 message,
                 userId: currentUser.id
@@ -54,10 +59,17 @@ export const createContact = async (state: any, formData: FormData): Promise<Par
             success: true,
             error: false,
             resMessage: "We will contact you soon",
+            statusCode: 201,
             ...contact
         };
     } catch (error) {
         console.log(error);
+        return {
+            error: true,
+            success: false,
+            resMessage: "please first sign in",
+            statusCode: 401,
+        }
     }
 };
 

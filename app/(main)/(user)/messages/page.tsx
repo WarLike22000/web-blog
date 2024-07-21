@@ -21,7 +21,7 @@ const Messages = async () => {
                         creation date
                     </th>
                     <th>
-                        sender
+                        email
                     </th>
                     <th>
                         delete
@@ -44,7 +44,7 @@ const Messages = async () => {
                                 {message.createdAt.getMonth()} / {message.createdAt.getDate()} / {message.createdAt.getFullYear()}
                             </td>
                             <td className="p-2 border-r">
-                                {message.user.name}
+                                {message.user.email}
                             </td>
 
                             <td className="p-2 mx-auto">

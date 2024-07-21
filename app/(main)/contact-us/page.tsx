@@ -4,24 +4,29 @@ import { createContact } from "@/actions/contact";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Textarea from "@/components/Textarea";
-import { Home } from "lucide-react";
+import { Home, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import toast from "react-hot-toast";
 
 const ContactUs = () => {
 
     const [response, action] = useFormState(createContact, null);
+    const [youCan, setYouCan] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
-        if(!response?.success && response?.error) {
+        if(!response?.success && response?.error && response.statusCode === 401) {
             toast.error(response?.resMessage!, {duration: 4000});
-        };
-
-        if(response?.success && !response.error) {
+        } else if(!response?.success && response?.error) {
+            toast.error(response?.resMessage!, {duration: 4000});
+        } else if(response?.success && !response.error) {
+            router.refresh();
             toast.success(response.resMessage!, { duration: 8000 });
+            setYouCan(true);
         };
     }, [response]);
     
@@ -79,15 +84,9 @@ const ContactUs = () => {
                         <form action={action} className="rounded-md w-full p-4 space-y-4 max-w-md">
                             <div className="space-y-2">
                                 <label className="text-white text-lg" htmlFor="name">
-                                    Name
+                                    Full Name
                                 </label>
                                 <Input className="bg-white bg-opacity-5 outline-gray-700 text-white" name="name" id="name" type="text" />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-white text-lg" htmlFor="email">
-                                    Email
-                                </label>
-                                <Input className="bg-white bg-opacity-5 outline-gray-700 text-white" name="email" id="email" type="email" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-white text-lg" htmlFor="phone">
@@ -102,6 +101,14 @@ const ContactUs = () => {
                                 <Textarea className="bg-white bg-opacity-5 outline-gray-700 text-white" name="message" id="message" rows={2} />
                             </div>
                             <Submit />
+                            {
+                                youCan ? (
+                                    <section className="w-full bg-green-500 bg-opacity-20 rounded-md transition-all text-white p-2">
+                                        thank you for contact us.
+                                        you can edit your message in <Link href="/messages" className="text-blue-400">messages section</Link>
+                                    </section>
+                                ) : null
+                            }
                         </form>
                         
                     </section>
@@ -118,8 +125,17 @@ function Submit() {
     
     return (
         <Button disabled={pending} type="submit" className="bg-white bg-opacity-10 outline outline-1 outline-blue-500 outline-offset-2 w-full hover:bg-white hover:bg-opacity-20">
-            Send Message
+            {pending ? <LoadState /> : "Send Message"}
         </Button>
+    );
+};
+
+function LoadState() {
+    return (
+        <div className="flex items-center justify-center gap-2 w-full">
+            Sending...
+            <Loader2 className="animate-spin"/>
+        </div>
     );
 };
 

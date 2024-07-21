@@ -62,7 +62,6 @@ model Contact {
   id Int @id @default(autoincrement())
 
   name    String
-  email   String
   phone   String
   message String
   numEdit Int    @default(0)
