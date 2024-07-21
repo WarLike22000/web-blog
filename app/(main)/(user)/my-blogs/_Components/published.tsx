@@ -13,8 +13,6 @@ const Published = ({ id, published } : { id: number, published: boolean }) => {
     const [clicked, setClicked] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    console.log(checked)
-    
     
     useEffect(() => {
         const publishHandler = async () => {

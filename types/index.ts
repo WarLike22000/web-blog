@@ -47,6 +47,7 @@ export interface InputProps {
     name?: string;
     required?: boolean;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    value?: string | number;
 };
 
 export interface TextareaProps {

@@ -108,6 +108,9 @@ export const getBlogsUser = async () => {
             where: {
                 authorId: currentUser.id
             },
+            orderBy: {
+                createdAt: "desc"
+            }
         });
 
         return blogs;
@@ -122,7 +125,7 @@ export const updateBlog = async (blogData: object, id: number) => {
         if(!currentUser) {
             throw new Error("User Unauthorized");
         };
-
+        console.log(blogData)
         const blog = await prisma.blog.update({
             data: {
                 ...blogData,

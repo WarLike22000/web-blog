@@ -8,10 +8,12 @@ const Input = ({
     id,
     name,
     required,
-    onChange
+    onChange,
+    value
 }: InputProps) => {
     return ( 
         <input
+            value={value}
             required={required}
             onChange={onChange}
             name={name}

@@ -4,6 +4,7 @@ import Published from "./_Components/published";
 import Button from "@/components/Button";
 import Link from "next/link";
 import DeleteBlog from "./_Components/DeleteBlog";
+import EditModal from "./_Components/EditModal";
 
 const MyBlogs = async () => {
 
@@ -29,7 +30,11 @@ const MyBlogs = async () => {
                         published
                     </th>
                     <th>
-                        delete                    </th>
+                        delete
+                    </th>
+                    <th>
+
+                    </th>
                 </tr>
 
                 {
@@ -68,6 +73,9 @@ const MyBlogs = async () => {
                             
                             <td className="p-2 mx-auto">
                                 <DeleteBlog id={blog.id} fileKey={blog.fileKey} />
+                            </td>
+                            <td className="p-2 mx-auto">
+                                <EditModal blog={blog}/>
                             </td>
                         </tr>
                     ))

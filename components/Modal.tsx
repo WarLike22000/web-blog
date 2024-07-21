@@ -41,7 +41,7 @@ const Modal = ({
             animate={open ? "open" : "close"}
             ref={modalRef}
         >
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full overflow-y-auto">
                 {children}
             </div>
         </motion.div>
