@@ -11,7 +11,7 @@ const AboutUs = () => {
                     fill
                     className="object-cover absolute size-full z-0 filter brightness-50"
                 />
-                <section className="z-20 absolute w-full h-full flex items-center justify-center">
+                <section className="z-10 absolute w-full h-full flex items-center justify-center">
                     <div className="max-w-lg px-4 text-center text-white space-y-3">
                         <h2 className="text-5xl">
                             About Us
